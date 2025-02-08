@@ -5,6 +5,8 @@ import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../src/createEmotionCache";
 import { CssBaseline } from "@mui/material";
 import { DefaultSeo } from "next-seo";
+import Header from "../src/componentes/header";
+import Footer from "../src/componentes/footer";
 
 
 // Criando cache do Emotion
@@ -31,8 +33,9 @@ export default function MyApp(props) {
           />
         {/* CssBaseline para reset de estilos */}
         <CssBaseline />
+        <Header/>
         <Component {...pageProps} />
-      
+        <Footer/>
     </CacheProvider>
   );
 }
