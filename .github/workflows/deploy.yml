@@ -1,0 +1,26 @@
+name: Deploy para GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Altere se o seu branch principal tiver outro nome
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Gerar o build estático
+        run: npm run export
+
+      - name: Publicar no GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Branch para deploy
+          folder: out        # Pasta que será publicada
