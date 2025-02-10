@@ -11,7 +11,7 @@ export default function Home() {
       <Head>
         <title>Clínica Odontologia Cotidente</title>
         <meta name="description" content="Clínica Odontológica Cotidete, Dra Gesiely Espalva, Av Rotary N° 100 Jardim
-    Nomura Cotia-SP 06717-090 Brasil" />
+       Nomura Cotia-SP 06717-090 Brasil" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
