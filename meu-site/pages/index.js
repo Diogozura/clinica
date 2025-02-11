@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Grid2, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,6 +13,9 @@ import conteudoData from "../src/mock/conteudo.json";
 import ShareButtons from "../src/componentes/compartilhamento";
 import CustomizedAccordions from "../src/componentes/Accordion";
 import Destaque from "../src/componentes/destaque";
+import Vantagens from "../src/mock/vantagens.json";
+import MissaoVisaoValores from "../src/mock/missaoVisaoValores.json";
+
 const images = [
   "/clinica/consultorio1.webp",
   "/clinica/consultorio2.webp",
@@ -156,54 +159,102 @@ export default function Home() {
           ))}
         </Carousel>
       </Box>
-      <Container id="conteudo" sx={{ p: {xs:1, sm:20} }}>
-        <Grid container>
-          <Grid item xs={6}>
+      <Container id="conteudo" sx={{ p: { xs: 2, sm: 10 } }}>
+        <Grid2 container spacing={8}>
+          <Grid2 item size={{xs:12 , md:6}}  p={3} >
             <Image
               src={
                 "https://nepoodonto.com.br/wp-content/uploads/2021/12/nepo-odontologia-post2.jpeg"
               }
-              width={360}
-              height={300}
+              width={350}
+              height={200}
+              layout="responsive"
               alt="Foto padrão"
             />
-          </Grid>
-          <Grid item xs={12} lg={6}>
+          </Grid2>
+          <Grid2 item size={{xs:12 , md:6}} >
             <Typography
               variant="h3"
+              component={'h2'}
               sx={{ fontWeight: "bold", mt: 2, color: "#3ea1f1" }}
             >
               {conteudoData.titulo}
             </Typography>
-            <Typography variant="h6" sx={{ letterSpacing: 2, mt: 2 }}>
+            <Typography variant="h6" component={'h4'} sx={{ letterSpacing: 2, mt: 2 }}>
               {conteudoData.subtitulo}
             </Typography>
-            <Typography variant="body1" sx={{ mt: 3 }}>
+            <Typography variant="body1" component={'p'} sx={{ mt: 3 }}>
               {conteudoData.descricao}
             </Typography>
-            <Typography>
+            <Typography sx={{ mt: 3 }}>
               {" "}
               <Link href={"/sobre"} style={{ color: "#3ea1f1" }}>
                 CLIQUE AQUI
               </Link>{" "}
               e veja mais vantagens exclusivas da nossa clínica!
             </Typography>
-            <ShareButtons />
-          </Grid>
+            <ShareButtons
+              url={"https://www.cotidente.com.br/"}
+              title={"visite o site Cotidente"}
+            />
+          </Grid2>
           <Grid xs={12} lg={6}>
-            <CustomizedAccordions />
+            <CustomizedAccordions dados={Vantagens} />
           </Grid>
           <Grid xs={6}>{/* Espaço vazio */}</Grid>
-        </Grid>
+        </Grid2>
       </Container>
-      <Box sx={{height: {xs: "none", md: "60vh" }, backgroundColor:'#e8b9a9', padding:3}} >
-      <Container >
-        <Typography color={'primary'} textTransform={'uppercase'} fontWeight={600} variant="h6" component={'h2'} m={'10px 0'} p={4}>TRATAMENTOS EM DESTAQUE</Typography>
-        <Typography color={'primary.contrastText'}  variant="h5" component={'h3'} p={4}>Existem muitos motivos para você sorrir com leveza e satisfação!</Typography>
-          <Destaque/>
-    </Container>
+      <Box sx={{ backgroundColor: "#000", padding: {xs:1 , md:15}}} id='tratamento'>
+        <Container >
+          <Typography
+            color={"primary"}
+            textTransform={"uppercase"}
+            fontWeight={600}
+            variant="h6"
+            component={"h2"}
+            m={"5px 0"}
+            p={1}
+          >
+            TRATAMENTOS EM DESTAQUE
+          </Typography>
+          <Typography
+            color={"primary.contrastText"}
+            variant="h5"
+            component={"h3"}
+            p={1}
+          >
+            Existem muitos motivos para você sorrir com leveza e satisfação!
+          </Typography>
+          <Destaque />
+        </Container>
       </Box>
-     
+      <Box sx={{ padding: 3 }}>
+        <Container>
+          <Grid2 container spacing={8}>
+            <Grid2 item size={{ xs: 12, md: 6 }}>
+              <Image
+                src={"/clinica/equipe.webp"}
+                alt="img default"
+                width={500}
+                height={300}
+                layout="responsive"
+                style={{ borderRadius: 10 }}
+              />
+            </Grid2>
+            <Grid2 item size={{ xs: 12, md: 6 }}>
+              <Typography
+                variant="h5"
+                component={"h2"}
+                color="primary"
+                fontWeight={"bold"}
+              >
+                UM OLHAR PARA DENTRO
+              </Typography>
+              <CustomizedAccordions dados={MissaoVisaoValores} />
+            </Grid2>
+          </Grid2>
+        </Container>
+      </Box>
     </>
   );
 }

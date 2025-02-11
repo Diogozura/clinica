@@ -55,12 +55,12 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/sobre-nos")}>
+        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
           Sobre Nós
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/equipe")}>
+        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
           Equipe
         </Button>
       </Grid>
@@ -68,31 +68,14 @@ const Header = () => {
         <Button color="inherit">Diferenciais</Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/contato")}>
+        <Button color="inherit" onClick={() => router.push("/#contato")}>
           Contato
         </Button>
       </Grid>
       <Grid item>
-        <Button
-          color="inherit"
-          endIcon={<ArrowDropDown />}
-          onClick={handleMenuOpen}
-        >
-          Tratamentos
+        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
+        Tratamentos
         </Button>
-        <Menu
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          {tratamentos.map((tratamento, index) => (
-            <MenuItem key={index} onClick={handleMenuClose}>
-              <Link href={`/${tratamento.slug}`} passHref>
-                <Button color="inherit">{tratamento.titulo}</Button>
-              </Link>
-            </MenuItem>
-          ))}
-        </Menu>
       </Grid>
     </Grid>
   );
@@ -113,57 +96,46 @@ const Header = () => {
     >
       <List>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/sobre-nos" passHref>
+          <Link href="/#conteudo" passHref>
             <ListItemText primary="Sobre Nós" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/equipe" passHref>
+          <Link href="/#conteudo" passHref>
             <ListItemText primary="Equipe" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/diferenciais" passHref>
+          <Link href="/#conteudo" passHref>
             <ListItemText primary="Diferenciais" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/contato" passHref>
+          <Link href="/#contato" passHref>
             <ListItemText primary="Contato" />
           </Link>
         </ListItem>
-        {/* Menu de Tratamentos com o Collapse */}
-        <ListItem button onClick={handleSubMenuToggle}>
-          <ListItemText primary="Tratamentos" />
-          {subMenuOpen ? <ExpandLess /> : <ExpandMore />}
+        <ListItem button onClick={toggleDrawer}>
+          <Link href="/#tratamentos" passHref>
+            <ListItemText primary="Tratamentos" />
+          </Link>
         </ListItem>
-        <Collapse in={subMenuOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            {tratamentos.map((tratamento, index) => (
-              <ListItem button key={index} onClick={toggleDrawer}>
-                <Link href={`/${tratamento.slug}`} passHref>
-                  <ListItemText primary={tratamento.titulo} />
-                </Link>
-              </ListItem>
-            ))}
-          </List>
-        </Collapse>
         <Divider />
         {/* Redes sociais à direita */}
         <ListItem sx={{ display: "flex", gap: 2 }}>
           <IconButton
             color="inherit"
-            href="https://facebook.com"
+            href="https://www.facebook.com/cotidente"
             target="_blank"
           >
             <Facebook />
           </IconButton>
-          <IconButton color="inherit" href="https://wa.me/" target="_blank">
+          <IconButton color="inherit" href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902" target="_blank">
             <WhatsApp />
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://instagram.com"
+            href="https://www.instagram.com/dragesiely/"
             target="_blank"
           >
             <Instagram />
@@ -209,17 +181,17 @@ const Header = () => {
         <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
           <IconButton
             color="inherit"
-            href="https://facebook.com"
+            href="https://www.facebook.com/cotidente"
             target="_blank"
           >
             <Facebook />
           </IconButton>
-          <IconButton color="inherit" href="https://wa.me/" target="_blank">
+          <IconButton color="inherit" href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902" target="_blank">
             <WhatsApp />
           </IconButton>
           <IconButton
             color="inherit"
-            href="https://instagram.com"
+            href="https://www.instagram.com/dragesiely/"
             target="_blank"
           >
             <Instagram />
