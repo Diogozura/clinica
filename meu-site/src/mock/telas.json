@@ -2,20 +2,40 @@
     {
       "titulo": "Tratamentos Odontológicos",
       "slug": "tratamentos-odontologicos",
-      "imagem": "/images/tratamento.jpg",
-      "descricao": "Conheça nossos tratamentos odontológicos."
-    },
+      "imagem": "/clinica/laboratorio.jpg",
+"descricao": [
+        "Tratamos cáries, restauramos ",
+        { "bold": "dentes danificados" },
+        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+      ]    },
     {
       "titulo": "Consultas",
       "slug": "consultas",
       "imagem": "/clinica/faxada.webp",
-      "descricao": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum cupiditate inventore beatae voluptates repellendus tenetur quibusdam, repellat, accusamus voluptate sint quos magni! Perspiciatis distinctio nam unde ex laudantium molestias adipisci. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum cupiditate inventore beatae voluptates repellendus tenetur quibusdam, repellat, accusamus voluptate sint quos magni! Perspiciatis distinctio nam unde ex laudantium molestias adipisci. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum cupiditate inventore beatae voluptates repellendus tenetur quibusdam, repellat, accusamus voluptate sint quos magni! Perspiciatis distinctio nam unde ex laudantium molestias adipisci."
+"descricao": [
+        "Tratamos cáries, restauramos ",
+        { "bold": "dentes danificados" },
+        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+      ]    },
+    {
+      "titulo": "Sobre nós",
+      "slug": "sobre-nos",
+      "imagem": "/clinica/faxada.webp",
+      "descricao": [
+        "Tratamos cáries, restauramos ",
+        { "bold": "dentes danificados" },
+        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+      ]
     },
     {
       "titulo": "Sobre nós",
       "slug": "sobre-nos",
-      "imagem": "/images/sobre.jpg",
-      "descricao": "Saiba mais sobre nossa clínica e missão."
+      "imagem": "/clinica/faxada.webp",
+      "descricao": [
+        "Tratamos cáries, restauramos ",
+        { "bold": "dentes danificados" },
+        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+      ]
     }
   ]
   

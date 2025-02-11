@@ -69,7 +69,7 @@ export default function Contato2() {
   <Head>
     <title>Contato - Cotidente</title>
   </Head>
-    <Container maxWidth="sm" sx={{height:'80vh', padding:4 }}>
+    <Container maxWidth="sm" sx={{height:'80vh', padding:1 }}>
     <Box
       sx={{
         display: "flex",

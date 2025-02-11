@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconButton, Tooltip } from '@mui/material';
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { WhatsApp, Facebook, Instagram, Telegram, Twitter } from '@mui/icons-material';
 
 const ShareButtons = ({ url, title }) => {
@@ -15,11 +15,13 @@ const ShareButtons = ({ url, title }) => {
   };
 
   return (
-    <div>
+    <Box display={'flex'} flexDirection={'column'} alignItems={'flex-start'} component={'summary'}>
+      <Typography variant='body1' fontWeight={'bold'} component={'h3'}>Compartilhe essa página nas suas redes:</Typography>
+      <Box>
       <Tooltip title="Compartilhar no WhatsApp">
         <IconButton
           onClick={() => window.open(shareLinks.whatsapp, '_blank')}
-          color="primary"
+          color="success"
         >
           <WhatsApp />
         </IconButton>
@@ -37,7 +39,7 @@ const ShareButtons = ({ url, title }) => {
       <Tooltip title="Compartilhar no Instagram">
         <IconButton
           onClick={() => window.open(shareLinks.instagram, '_blank')}
-          color="primary"
+          color="error"
         >
           <Instagram />
         </IconButton>
@@ -60,7 +62,9 @@ const ShareButtons = ({ url, title }) => {
           <Twitter />
         </IconButton>
       </Tooltip>
-    </div>
+      </Box>
+      
+    </Box>
   );
 };
 

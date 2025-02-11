@@ -53,11 +53,11 @@ export default function Contato1() {
 
       if (!response.ok) throw new Error("Erro ao enviar e-mail.");
 
-      console.log("E-mail enviado com sucesso!");
+   
       setStatus("Formulário enviado!");
       setFormData({ nome: "", email: "", mensagem: "" });
     } catch (error) {
-      console.error("Erro:", error);
+  
       setStatus("Erro ao enviar. Tente novamente.");
     }
   };

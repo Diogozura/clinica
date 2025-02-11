@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import Head from "next/head";
 import { CacheProvider } from "@emotion/react";
 import createEmotionCache from "../src/createEmotionCache";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { DefaultSeo } from "next-seo";
 import Header from "../src/componentes/header";
 import Footer from "../src/componentes/footer";
-
-
+import '../styles/globals.css';
+import theme from "../styles/theme";
+import EnderecoContato from "../src/componentes/enderecoContato";
 // Criando cache do Emotion
 const clientSideEmotionCache = createEmotionCache();
 
@@ -32,10 +33,15 @@ export default function MyApp(props) {
             }}
           />
         {/* CssBaseline para reset de estilos */}
+        <ThemeProvider theme={theme}>
+
+       
         <CssBaseline />
         <Header/>
         <Component {...pageProps} />
+        <EnderecoContato/>
         <Footer/>
+        </ThemeProvider>
     </CacheProvider>
   );
 }

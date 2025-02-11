@@ -12,6 +12,7 @@ import {
   ListItem,
   ListItemText,
   Divider,
+  Collapse,
 } from "@mui/material";
 import {
   Facebook,
@@ -19,6 +20,8 @@ import {
   Instagram,
   ArrowDropDown,
   Menu as MenuIcon,
+  ExpandLess,
+  ExpandMore,
 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -29,7 +32,7 @@ import Image from "next/image";
 const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  console.log("tratamentos", tratamentos);
+  const [subMenuOpen, setSubMenuOpen] = useState(false); // Controle para mostrar/ocultar a lista de tratamentos
   const router = useRouter();
 
   const handleMenuOpen = (event) => {
@@ -38,6 +41,11 @@ const Header = () => {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+    setSubMenuOpen(false); // Fecha o submenu de tratamentos ao fechar o menu
+  };
+
+  const handleSubMenuToggle = () => {
+    setSubMenuOpen(!subMenuOpen); // Alterna a visibilidade do submenu de tratamentos
   };
 
   const toggleDrawer = () => {
@@ -47,7 +55,7 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/sobre")}>
+        <Button color="inherit" onClick={() => router.push("/sobre-nos")}>
           Sobre Nós
         </Button>
       </Grid>
@@ -95,6 +103,13 @@ const Header = () => {
       open={drawerOpen}
       onClose={toggleDrawer}
       disableScrollLock={true}
+      sx={{
+        width: 250, // Definindo uma largura fixa maior para o Drawer
+        flexShrink: 0, // Evitar que o Drawer encolha
+        "& .MuiDrawer-paper": {
+          width: 250, // Largura do Drawer quando aberto
+        },
+      }}
     >
       <List>
         <ListItem button onClick={toggleDrawer}>
@@ -117,11 +132,22 @@ const Header = () => {
             <ListItemText primary="Contato" />
           </Link>
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/tratamentos" passHref>
-            <ListItemText primary="Tratamentos" />
-          </Link>
+        {/* Menu de Tratamentos com o Collapse */}
+        <ListItem button onClick={handleSubMenuToggle}>
+          <ListItemText primary="Tratamentos" />
+          {subMenuOpen ? <ExpandLess /> : <ExpandMore />}
         </ListItem>
+        <Collapse in={subMenuOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {tratamentos.map((tratamento, index) => (
+              <ListItem button key={index} onClick={toggleDrawer}>
+                <Link href={`/${tratamento.slug}`} passHref>
+                  <ListItemText primary={tratamento.titulo} />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Collapse>
         <Divider />
         {/* Redes sociais à direita */}
         <ListItem sx={{ display: "flex", gap: 2 }}>
@@ -148,7 +174,7 @@ const Header = () => {
   );
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "white", color: "black" }}>
+    <AppBar  sx={{  position: { xs: "relative", sm: "fixed" }, backgroundColor: "white", color: "black" }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -174,7 +200,7 @@ const Header = () => {
         </Box>
 
         {/* Ícone de menu hambúrguer para dispositivos móveis */}
-        <Box sx={{ display: { xs: "block", sm: "none" } }}>
+        <Box sx={{ display: { xs: "block",  sm: "none" } }}>
           <IconButton color="inherit" onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
