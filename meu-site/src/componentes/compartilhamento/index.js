@@ -5,13 +5,13 @@ import { WhatsApp, Facebook, Instagram, Telegram, Twitter } from '@mui/icons-mat
 const ShareButtons = ({ url, title }) => {
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
-
+  console.log('encodedUrl', encodedUrl)
   const shareLinks = {
-    whatsapp: `https://wa.me/?text=${encodedTitle} ${encodedUrl}`,
-    facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-    instagram: `https://www.instagram.com/?url=${encodedUrl}`, // Instagram não tem um link direto para compartilhamento, mas podemos abrir o app
-    telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-    twitter: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    whatsapp: `https://wa.me/?text=${encodedTitle} https://www.cotidente.com.br/${encodedUrl}`,
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=https://www.cotidente.com.br/${encodedUrl}`,
+    instagram: `https://www.instagram.com/?url=https://www.cotidente.com.br/${encodedUrl}`, // Instagram não tem um link direto para compartilhamento, mas podemos abrir o app
+    telegram: `https://t.me/share/url?url=https://www.cotidente.com.br/${encodedUrl}&text=${encodedTitle}`,
+    twitter: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=https://www.cotidente.com.br/${encodedUrl}`,
   };
 
   return (

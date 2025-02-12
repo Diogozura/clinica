@@ -1,10 +1,12 @@
 import { useRouter } from "next/router";
 import data from "../src/mock/telas.json";
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid, Grid2, Typography } from "@mui/material";
 import ShareButtons from "../src/componentes/compartilhamento";
 import Image from "next/image";
 import React from "react";
-import Contato2 from "../src/contatos/contato2";
+import Link from "next/link";
+import Head from "next/head";
+
 export async function getStaticPaths() {
   // Gerar as rotas com base no slug
   const paths = data.map((tela) => ({
@@ -31,72 +33,91 @@ const Tela = ({ tela }) => {
 
   return (
     <>
-      <Grid2
+    <Head>
+      <title>{tela.titulo} - cotidente</title>
+    </Head>
+      <Grid
         container
-        spacing={0} // Espaçamento entre os elementos
-        alignItems="stretch"
-        
+        spacing={2}
+        backgroundColor={tela.background}
+        alignItems="flex-start"
+        justifyContent="space-between"
       >
-        {/* IMAGEM */}
-        <Grid2
+        {/* Imagem fixa */}
+        <Grid
           item
-          size={{ xs: 12, md: 6 }}
+          xs={12}
+          md={6}
           sx={{
+            position: "sticky",
+            top: 0,
             display: "flex",
-            justifyContent: "center",
             alignItems: "center",
-            position: "relative",
-            height: { xs: "300px", md: "100vh" }, // Ajusta altura para efeito visual adequado
-            overflow: "hidden",
-          }}
-        >
-          <Box sx={{ width: "100%", height: "100%", position: "relative" }}>
-            <Image
-              src={tela.imagem} // Caminho da imagem
-              alt={tela.titulo} // Texto alternativo
-              fill
-              // width={400}
-              // height={300}
-              objectFit="cover" // Mantém a proporção da imagem
-              quality={100} // Qualidade máxima
-            />
-          </Box>
-        </Grid2>
-
-        {/* TEXTO */}
-        <Grid2
-          item
-          size={{ xs: 12, md: 6 }}
-          sx={{
-            display: "flex",
-            flexDirection: "column",
             justifyContent: "center",
-            textAlign: "start",
-            px: 3,
-            backgroundColor: "#000",
-            minHeight: "100vh",
-            color:'#FFF'
           }}
         >
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold", mb: 2, mt: { xs: 0, md: 15 } }}
-          >
-            {tela.titulo}
+          <Image
+            src={"/a.jpg"} // Substitua pela sua imagem
+            alt={tela.titulo} // Texto alternativo
+            width={600}
+            height={800}
+            objectFit="contain"
+            style={{ maxHeight: "100vh", width: "100%", marginTop: 54 }}
+          />
+        </Grid>
+
+        {/* Texto rolável */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ minHeight: "100vh", p: 4, color: tela.color }}
+        >
+          <Typography variant="h4" gutterBottom mt={15} color="primary">
+            {tela?.titulo}
           </Typography>
-          <Typography variant="body1">
-            {tela?.descricao.map((parte, index) =>
-              typeof parte === "string" ? (
-                parte
-              ) : (
-                <strong key={index}>{parte.bold}</strong>
-              )
-            )}
+          {tela?.descricao.map((item, index) =>
+            typeof item === "string" ? (
+              <Typography key={index} component="span">
+                {item}
+              </Typography>
+            ) : item?.bold ? (
+              <Typography key={index} component="span" fontWeight="bold">
+                {item?.bold}
+              </Typography>
+            ) : null
+          )}
+          {/* Renderiza os detalhes (múltiplos casos) */}
+          {tela?.detalhes &&
+            tela?.detalhes.map((detalhe, index) => (
+              <Box key={index} mt={3} p={2}>
+                <Typography variant="p"  color="primary">
+                  {detalhe?.titulo}
+                </Typography>
+                <Typography variant="body1" mt={1}>
+                  {detalhe?.descricao}
+                </Typography>
+                {detalhe?.lista && (
+                  <ul>
+                    {detalhe?.lista.map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </Box>
+            ))}
+
+          <Typography variant="h4" color="#154381" gutterBottom mt={15}>
+            Cotidente Odontologia
           </Typography>
-       
-          <ShareButtons url={url} title={title} />
-        </Grid2>
-      </Grid2>
+          <Typography variant="body1" paragraph>
+            Sua melhor opção para Tratamento de canal sessão única em
+            Guaratinguetá. <Link href={"/contato"}> Marque uma avaliação</Link>
+            ou converse com a gente por <Link href={""}>WhatsApp</Link>!
+          </Typography>
+          <ShareButtons url={tela.slug} title={tela.titulo} />
+        </Grid>
+      </Grid>
     </>
   );
 };

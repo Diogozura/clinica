@@ -1,41 +1,102 @@
 [
-    {
-      "titulo": "Tratamentos Odontológicos",
-      "slug": "tratamentos-odontologicos",
-      "imagem": "/clinica/laboratorio.jpg",
-"descricao": [
-        "Tratamos cáries, restauramos ",
-        { "bold": "dentes danificados" },
-        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
-      ]    },
-    {
-      "titulo": "Consultas",
-      "slug": "consultas",
-      "imagem": "/clinica/faxada.webp",
-"descricao": [
-        "Tratamos cáries, restauramos ",
-        { "bold": "dentes danificados" },
-        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
-      ]    },
-    {
-      "titulo": "Sobre nós",
-      "slug": "sobre-nos",
-      "imagem": "/clinica/faxada.webp",
-      "descricao": [
-        "Tratamos cáries, restauramos ",
-        { "bold": "dentes danificados" },
-        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
-      ]
-    },
-    {
-      "titulo": "Sobre nós",
-      "slug": "sobre-nos",
-      "imagem": "/clinica/faxada.webp",
-      "descricao": [
-        "Tratamos cáries, restauramos ",
-        { "bold": "dentes danificados" },
-        " e substituímos restaurações antigas, utilizando materiais de alta qualidade."
-      ]
-    }
-  ]
-  
+  {
+    "titulo": "Tratamento de canal",
+    "slug": "tratamento-de-canal",
+    "imagem": "/clinica/laboratorio.jpg",
+    "background":"#FFFF",
+    "color":"#000",
+    "descricao": [
+      "Tratamos cáries, restauramos  e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+    ],
+    "detalhes": [
+      {
+        "titulo": "Endodontia é a especialidade odontológica conhecida por 'tratamento de canal'",
+        "descricao": "De modo geral, as causas mais comuns para este tipo de procedimento são:",
+        "lista": [
+          "Dentes quebrados;",
+          "Cárie profunda;",
+          "Dano ao dente, como um trauma forte, seja ele recente ou mais antigo."
+        ]
+      },
+      {
+        "descricao": "Nossa clinica conta com equipamentos que possibilitam fazer o tratamento de canal em uma única sessão, desde que bem avaliado.",
+        "image":"/clinica/faxada.webp"
+      }
+    ]
+  },
+  {
+    "titulo": "consultas",
+    "slug": "consultas",
+    "imagem": "/clinica/faxada.webp",
+    "background":"#FFFF",
+    "color":"#000",
+    "descricao": [
+      "Tratamos cáries, restauramos  e substituímos restaurações antigas, utilizando materiais de alta qualidade."
+    ],
+    "detalhes": [
+      {
+        "titulo": "Endodontia é a especialidade odontológica conhecida por 'tratamento de canal'",
+        "descricao": "De modo geral, as causas mais comuns para este tipo de procedimento são:",
+        "lista": [
+          "Dentes quebrados;",
+          "Cárie profunda;",
+          "Dano ao dente, como um trauma forte, seja ele recente ou mais antigo."
+        ]
+      },
+      {
+        "descricao": "Nossa clinica conta com equipamentos que possibilitam fazer o tratamento de canal em uma única sessão, desde que bem avaliado.",
+        "image":"/clinica/faxada.webp"
+      }
+    ]
+  },
+  {
+    "titulo": "Equipe",
+    "slug": "equipe",
+    "imagem": "/clinica/faxada.webp",
+    "background":"#FFFF",
+    "color":"#000",
+    "descricao": [
+      "Equipe Cotidente "
+    ],
+    "detalhes": [
+      {
+        "titulo": "Endodontia é a especialidade odontológica conhecida por 'tratamento de canal'",
+        "descricao": "De modo geral, as causas mais comuns para este tipo de procedimento são:",
+        "lista": [
+          "Dentes quebrados;",
+          "Cárie profunda;",
+          "Dano ao dente, como um trauma forte, seja ele recente ou mais antigo."
+        ]
+      },
+      {
+        "descricao": "Nossa clinica conta com equipamentos que possibilitam fazer o tratamento de canal em uma única sessão, desde que bem avaliado.",
+        "image":"/clinica/faxada.webp"
+      }
+    ]
+  },
+  {
+    "titulo": "Sobre nós",
+    "slug": "sobre-nos",
+    "imagem": "/clinica/faxada.webp",
+    "background":"#FFFF",
+    "color":"#000",
+    "descricao": [
+      "Sobre nós Equipe Cotidente "
+    ],
+    "detalhes": [
+      {
+        "titulo": "Endodontia é a especialidade odontológica conhecida por 'tratamento de canal'",
+        "descricao": "De modo geral, as causas mais comuns para este tipo de procedimento são:",
+        "lista": [
+          "Dentes quebrados;",
+          "Cárie profunda;",
+          "Dano ao dente, como um trauma forte, seja ele recente ou mais antigo."
+        ]
+      },
+      {
+        "descricao": "Nossa clinica conta com equipamentos que possibilitam fazer o tratamento de canal em uma única sessão, desde que bem avaliado.",
+        "image":"/clinica/faxada.webp"
+      }
+    ]
+  }
+]

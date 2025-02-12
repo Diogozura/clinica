@@ -16,7 +16,7 @@ export default function Footer() {
         <Grid container spacing={1}>
           <Grid size={{ xs: 12, md: 6 }} order={{ xs: 2, md: 1 }} textAlign={"center"}>
             <Image
-              src={"/logoheader.webp"}
+              src={"/logoBranca.webp"}
               width={"250"}
               height={"65"}
               alt={"Logo codidente"}

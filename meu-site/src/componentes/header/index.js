@@ -25,7 +25,7 @@ import {
 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import tratamentos from "../../mock/telas.json";
+import tratamentos from "../../mock/tratamentos.json";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
