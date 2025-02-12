@@ -55,12 +55,12 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
+        <Button color="inherit" onClick={() => router.push("/sobre-nos")}>
           Sobre Nós
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
+        <Button color="inherit" onClick={() => router.push("/equipe")}>
           Equipe
         </Button>
       </Grid>
@@ -68,15 +68,37 @@ const Header = () => {
         <Button color="inherit">Diferenciais</Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#contato")}>
+        <Button color="inherit" onClick={() => router.push("/contato")}>
           Contato
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
-        Tratamentos
-        </Button>
+        <Button
+          color="inherit"
+          endIcon={<ArrowDropDown />}
+          onClick={handleMenuOpen}
+          disableScrollLock
+        >
+          Tratamentos
+          </Button>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          disableScrollLock
+        >
+          {tratamentos.map((tratamento, index) => (
+            <MenuItem key={index} onClick={handleMenuClose}>
+              <Link href={`/${tratamento.slug}`} passHref>
+                <Button color="inherit">{tratamento.titulo}</Button>
+              </Link>
+            </MenuItem>
+          ))}
+        </Menu>
+
       </Grid>
+
     </Grid>
   );
 
@@ -96,30 +118,42 @@ const Header = () => {
     >
       <List>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
+          <Link href="/sobre-nos" passHref>
             <ListItemText primary="Sobre Nós" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
+          <Link href="/equipe" passHref>
             <ListItemText primary="Equipe" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
+          <Link href="/diferenciais" passHref>
             <ListItemText primary="Diferenciais" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#contato" passHref>
+          <Link href="/contato" passHref>
             <ListItemText primary="Contato" />
           </Link>
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#tratamentos" passHref>
-            <ListItemText primary="Tratamentos" />
-          </Link>
+          {/* Menu de Tratamentos com o Collapse */}
+          <ListItem button onClick={handleSubMenuToggle} disableScrollLock>
+          <ListItemText primary="Tratamentos" />
+          {subMenuOpen ? <ExpandLess /> : <ExpandMore />}
+       
         </ListItem>
+        <Collapse in={subMenuOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {tratamentos.map((tratamento, index) => (
+              <ListItem button key={index} onClick={toggleDrawer}>
+                <Link href={`/${tratamento.slug}`} passHref>
+                  <ListItemText primary={tratamento.titulo} />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Collapse>
         <Divider />
         {/* Redes sociais à direita */}
         <ListItem sx={{ display: "flex", gap: 2 }}>

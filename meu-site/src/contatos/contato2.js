@@ -133,6 +133,7 @@ export default function Contato2() {
           <FormControl
             fullWidth
             error={erros.tratamento}
+            disableScrollLock
             sx={{
               input: { color: "white" },
               "& label": { color: "white" },
@@ -144,7 +145,7 @@ export default function Contato2() {
               },
             }}
           >
-            <InputLabel id="demo-simple-select-label">
+            <InputLabel id="demo-simple-select-label" disableScrollLock>
               Tratamento desejado
             </InputLabel>
             <Select
@@ -157,9 +158,10 @@ export default function Contato2() {
                 color: "white", // Texto branco quando um item for selecionado
                 "& .MuiSelect-icon": { color: "white" }, // Ícone da setinha branco
               }}
+              disableScrollLock
             >
               {tratamentos.map((item) => (
-                <MenuItem key={item.id} value={item.name}>
+                <MenuItem key={item.id} value={item.name} disableScrollLock>
                   {item.name}
                 </MenuItem>
               ))}
