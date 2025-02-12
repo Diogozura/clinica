@@ -16,7 +16,7 @@ export default function Footer() {
         <Grid container spacing={1}>
           <Grid size={{ xs: 12, md: 6 }} order={{ xs: 2, md: 1 }} textAlign={"center"}>
             <Image
-              src={"/logoheader.webp"}
+              src={"/logoheaderBranca.webp"}
               width={"250"}
               height={"65"}
               alt={"Logo codidente"}
@@ -32,10 +32,10 @@ export default function Footer() {
             </Typography>
             <br />
             <Typography color="primary.contrastText">
-              Resp. Téc.: Dra. Melina Vieira Bortolo Subitoni
+              Resp. Téc.: Dra.Glesiely
             </Typography>
             <Typography color="primary.contrastText">
-              CRO/SP: 82257 | CRO/SP CL: 026264
+              CRO/SP: **** | CRO/SP CL: ****
             </Typography>
             <Box
               sx={{

@@ -22,20 +22,18 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <DefaultSeo
-            title="Nome do Site - Melhor Clínica Odontológica"
+            title="Cotidente - Melhor Clínica Odontológica"
             description="Clínica odontológica especializada em tratamentos modernos e atendimento humanizado."
             openGraph={{
               type: "website",
               url: "https://seusite.com.br",
-              title: "Nome do Site",
+              title: "Cotidente",
               description: "Dentistas especializados para o seu sorriso!",
-              images: [{ url: "https://seusite.com.br/capa.jpg", width: 1200, height: 630, alt: "Capa do site" }],
+              images: [{ url: "https://seusite.com.br/logoHeader.webp", width: 1200, height: 630, alt: "Capa do site" }],
             }}
           />
         {/* CssBaseline para reset de estilos */}
         <ThemeProvider theme={theme}>
-
-       
         <CssBaseline />
         <Header/>
         <Component {...pageProps} />
