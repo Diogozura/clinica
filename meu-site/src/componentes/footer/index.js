@@ -38,6 +38,9 @@ export default function Footer() {
             <Typography color="primary.contrastText">
               CRO/SP: **** | CRO/SP CL: ****
             </Typography>
+            <Typography color="primary.contrastText">
+             CNPJ 18.234.382/0001-83
+            </Typography>
             <Box
               sx={{
                 position: "relative",
