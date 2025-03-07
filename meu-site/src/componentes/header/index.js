@@ -55,24 +55,24 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/sobre-nos")}>
+        <Button color="inherit" onClick={() => router.push("/#sobre")}>
           Sobre Nós
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/equipe")}>
+        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
           Equipe
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit">Diferenciais</Button>
+        <Button color="inherit" onClick={() => router.push("/#conteudo")}>Diferenciais</Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/contato")}>
+        <Button color="inherit" onClick={() => router.push("/#footer")}>
           Contato
         </Button>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <Button
           color="inherit"
           endIcon={<ArrowDropDown />}
@@ -97,7 +97,7 @@ const Header = () => {
           ))}
         </Menu>
 
-      </Grid>
+      </Grid> */}
 
     </Grid>
   );
@@ -118,29 +118,29 @@ const Header = () => {
     >
       <List>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/sobre-nos" passHref>
+          <Link href="/#sobre" passHref>
             <ListItemText primary="Sobre Nós" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/equipe" passHref>
+          <Link href="/#conteudo" passHref>
             <ListItemText primary="Equipe" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/diferenciais" passHref>
+          <Link href="/#conteudo" passHref>
             <ListItemText primary="Diferenciais" />
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/contato" passHref>
+          <Link href="/#footer" passHref>
             <ListItemText primary="Contato" />
           </Link>
         </ListItem>
           {/* Menu de Tratamentos com o Collapse */}
           <ListItem button onClick={handleSubMenuToggle} disableScrollLock>
-          <ListItemText primary="Tratamentos" />
-          {subMenuOpen ? <ExpandLess /> : <ExpandMore />}
+          {/* <ListItemText primary="Tratamentos" />
+          {subMenuOpen ? <ExpandLess /> : <ExpandMore />} */}
        
         </ListItem>
         <Collapse in={subMenuOpen} timeout="auto" unmountOnExit>

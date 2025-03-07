@@ -77,7 +77,7 @@ export default function Contato2() {
   return (
     <>
      
-      <Container maxWidth="sm" sx={{ height: "80vh", padding: 1 }}>
+      <Container maxWidth="sm" sx={{  padding: 1 }}>
         <Box
           sx={{
             display: "flex",

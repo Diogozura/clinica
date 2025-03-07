@@ -85,17 +85,20 @@
     ],
     "detalhes": [
       {
-        "titulo": "Endodontia é a especialidade odontológica conhecida por 'tratamento de canal'",
-        "descricao": "De modo geral, as causas mais comuns para este tipo de procedimento são:",
-        "lista": [
-          "Dentes quebrados;",
-          "Cárie profunda;",
-          "Dano ao dente, como um trauma forte, seja ele recente ou mais antigo."
-        ]
+        "titulo": "Cotindente",
+        "descricao": "A Clínica Odontológica Cotidente é um espaço dedicado a proporcionar saúde bucal de qualidade, focado no bem-estar e na confiança de nossos pacientes. Com um time altamente capacitado e tecnologias de ponta, buscamos sempre oferecer o melhor em tratamentos odontológicos para todas as idades, garantindo o sorriso saudável que você merece."
       },
       {
-        "descricao": "Nossa clinica conta com equipamentos que possibilitam fazer o tratamento de canal em uma única sessão, desde que bem avaliado.",
-        "image":"/clinica/faxada.webp"
+        "titulo": "Missão",
+        "descricao": "Nossa missão é realizar uma odontologia de cura, trazendo solução para a vida das pessoas de forma humanizada e empática, realizando sonhos e devolvendo sorrisos."
+      },
+      {
+        "titulo": "visão",
+        "descricao": "Nos tornar referência de saúde e excelência para, assim, poder expandir e levar essa missão para o maior número de pessoas."
+      },
+      {
+        "titulo": "Valor",
+        "descricao": "Honestidade, transparência, empatia e excelência."
       }
     ]
   }
