@@ -7,9 +7,10 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { DefaultSeo } from "next-seo";
 import Header from "../src/componentes/header";
 import Footer from "../src/componentes/footer";
-import '../styles/globals.css';
+import "../styles/globals.css";
 import theme from "../styles/theme";
 import EnderecoContato from "../src/componentes/enderecoContato";
+import CookieAlert from "../src/componentes/Cookies";
 // Criando cache do Emotion
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,24 +23,33 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <DefaultSeo
-            title="Cotidente - Melhor Clínica Odontológica"
-            description="Clínica odontológica especializada em tratamentos modernos e atendimento humanizado."
-            openGraph={{
-              type: "website",
-              url: "https://seusite.com.br",
-              title: "Cotidente",
-              description: "Dentistas especializados para o seu sorriso!",
-              images: [{ url: "https://seusite.com.br/logoHeader.webp", width: 1200, height: 630, alt: "Capa do site" }],
-            }}
-          />
-        {/* CssBaseline para reset de estilos */}
-        <ThemeProvider theme={theme}>
+        title="Cotidente - Melhor Clínica Odontológica"
+        description="Clínica odontológica especializada em tratamentos modernos e atendimento humanizado."
+        openGraph={{
+          type: "website",
+          url: "https://www.cotidente.com.br/",
+          title: "Clínica Odontologia Cotidente - Dra Gesiely Espalva",
+          description: "Dentistas especializados para o seu sorriso!",
+          images: [
+            {
+              url: "https://https://www.cotidente.com.br/logoBranca.webp",
+              width: 1200,
+              height: 630,
+              alt: "Cotidente",
+            },
+          ],
+        }}
+      />
+      {/* CssBaseline para reset de estilos */}
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header/>
+        <Header />
         <Component {...pageProps} />
-        <EnderecoContato/>
-        <Footer/>
-        </ThemeProvider>
+        <CookieAlert/>
+        <EnderecoContato />
+     
+        <Footer />
+      </ThemeProvider>
     </CacheProvider>
   );
 }

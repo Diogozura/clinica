@@ -2,21 +2,22 @@ import { Box, Container, Typography } from "@mui/material";
 import Contato2 from "../../../src/contatos/contato2";
 import Grid from "@mui/material/Grid2";
 import Image from "next/image";
+import Link from "next/link";
 export default function Footer() {
   return (
     <Box
       component={"footer"}
-      id="contato"
+      id="footer"
       sx={{
         backgroundImage: "linear-gradient(to bottom, #0b284f, #000000)",
       }}
       p={1}
     >
       <Container>
-        <Grid container spacing={1}>
+        <Grid container spacing={2}>
           <Grid size={{ xs: 12, md: 6 }} order={{ xs: 2, md: 1 }} textAlign={"center"}>
             <Image
-              src={"/logoheaderBranca.webp"}
+              src={"/logoBranca.webp"}
               width={"250"}
               height={"65"}
               alt={"Logo codidente"}
@@ -32,7 +33,7 @@ export default function Footer() {
             </Typography>
             <br />
             <Typography color="primary.contrastText">
-              Resp. Téc.: Dra.Glesiely
+              Resp. Téc.: Dra. Dra Gesiely Espalva
             </Typography>
             <Typography color="primary.contrastText">
               CRO/SP: **** | CRO/SP CL: ****
@@ -66,8 +67,11 @@ export default function Footer() {
           <Grid size={{ xs: 12, md: 6 }} order={{ xs: 1, md: 2 }}>
             <Contato2 />
           </Grid>
-          <Grid size={12} textAlign={"center" } marginBottom={{ xs: 0, md: 5}} order={{ xs: 3, md: 3 }} color="primary.contrastText">
+          <Grid size={6} textAlign={"center" } marginBottom={{ xs: 0, md: 5}} order={{ xs: 3, md: 3 }} color="primary.contrastText">
            <Typography variant="body2"  component={'p'}>© 2021-2025 Cotidente</Typography> 
+          </Grid>
+          <Grid size={6} textAlign={"center" } marginBottom={{ xs: 0, md: 5}} order={{ xs: 3, md: 3 }} color="primary.contrastText">
+           <Typography variant="body2"  component={'p'}><Link href={'/politica-privacidade'} style={{textDecoration:'underline'}}>Politica e privacidade</Link></Typography> 
           </Grid>
         </Grid>
       </Container>

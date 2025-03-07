@@ -25,7 +25,7 @@ import {
 } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import tratamentos from "../../mock/telas.json";
+import tratamentos from "../../mock/tratamentos.json";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -55,7 +55,7 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
+        <Button color="inherit" onClick={() => router.push("/#sobre")}>
           Sobre Nós
         </Button>
       </Grid>
@@ -65,18 +65,40 @@ const Header = () => {
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit">Diferenciais</Button>
+        <Button color="inherit" onClick={() => router.push("/#conteudo")}>Diferenciais</Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#contato")}>
+        <Button color="inherit" onClick={() => router.push("/#footer")}>
           Contato
         </Button>
       </Grid>
-      <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
-        Tratamentos
-        </Button>
-      </Grid>
+      {/* <Grid item>
+        <Button
+          color="inherit"
+          endIcon={<ArrowDropDown />}
+          onClick={handleMenuOpen}
+          disableScrollLock
+        >
+          Tratamentos
+          </Button>
+
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+          disableScrollLock
+        >
+          {tratamentos.map((tratamento, index) => (
+            <MenuItem key={index} onClick={handleMenuClose}>
+              <Link href={`/${tratamento.slug}`} passHref>
+                <Button color="inherit">{tratamento.titulo}</Button>
+              </Link>
+            </MenuItem>
+          ))}
+        </Menu>
+
+      </Grid> */}
+
     </Grid>
   );
 
@@ -96,7 +118,7 @@ const Header = () => {
     >
       <List>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
+          <Link href="/#sobre" passHref>
             <ListItemText primary="Sobre Nós" />
           </Link>
         </ListItem>
@@ -111,15 +133,27 @@ const Header = () => {
           </Link>
         </ListItem>
         <ListItem button onClick={toggleDrawer}>
-          <Link href="/#contato" passHref>
+          <Link href="/#footer" passHref>
             <ListItemText primary="Contato" />
           </Link>
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#tratamentos" passHref>
-            <ListItemText primary="Tratamentos" />
-          </Link>
+          {/* Menu de Tratamentos com o Collapse */}
+          <ListItem button onClick={handleSubMenuToggle} disableScrollLock>
+          {/* <ListItemText primary="Tratamentos" />
+          {subMenuOpen ? <ExpandLess /> : <ExpandMore />} */}
+       
         </ListItem>
+        <Collapse in={subMenuOpen} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            {tratamentos.map((tratamento, index) => (
+              <ListItem button key={index} onClick={toggleDrawer}>
+                <Link href={`/${tratamento.slug}`} passHref>
+                  <ListItemText primary={tratamento.titulo} />
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Collapse>
         <Divider />
         {/* Redes sociais à direita */}
         <ListItem sx={{ display: "flex", gap: 2 }}>
