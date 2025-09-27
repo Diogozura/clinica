@@ -1,7 +1,8 @@
 import { Box, Container, Typography } from "@mui/material";
-import Contato2 from "../../../src/contatos/contato2";
+import Contato from "../../../src/contatos";
 import Grid from "@mui/material/Grid2";
 import Image from "next/image";
+import Link from "next/link";
 export default function Footer() {
   return (
     <Box
@@ -64,10 +65,11 @@ export default function Footer() {
             </Box>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }} order={{ xs: 1, md: 2 }}>
-            <Contato2 />
+            <Contato />
           </Grid>
-          <Grid size={12} textAlign={"center" } marginBottom={{ xs: 0, md: 5}} order={{ xs: 3, md: 3 }} color="primary.contrastText">
+          <Grid size={12} textAlign={"center"} display={'flex'} flexWrap={'wrap'} justifyContent={'space-evenly'} marginBottom={{ xs: 0, md: 5}} order={{ xs: 3, md: 3 }} color="primary.contrastText">
            <Typography variant="body2"  component={'p'}>© 2021-2025 Cotidente</Typography> 
+           <Typography variant="body2"  component={'p'}> <Link href="/politica-privacidade">Política de privacidade</Link></Typography> 
           </Grid>
         </Grid>
       </Container>

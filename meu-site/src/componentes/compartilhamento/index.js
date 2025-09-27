@@ -7,11 +7,11 @@ const ShareButtons = ({ url, title }) => {
   const encodedTitle = encodeURIComponent(title);
 
   const shareLinks = {
-    whatsapp: `https://wa.me/?text=${encodedTitle} ${encodedUrl}`,
+    whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-    instagram: `https://www.instagram.com/?url=${encodedUrl}`, // Instagram não tem um link direto para compartilhamento, mas podemos abrir o app
+    instagram: `https://www.instagram.com/`, // Instagram não suporta compartilhamento direto via URL
     telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-    twitter: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    twitter: `https://x.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
   };
 
   return (
@@ -36,9 +36,14 @@ const ShareButtons = ({ url, title }) => {
         </IconButton>
       </Tooltip>
 
-      <Tooltip title="Compartilhar no Instagram">
+      <Tooltip title="Copiar link para Instagram">
         <IconButton
-          onClick={() => window.open(shareLinks.instagram, '_blank')}
+          onClick={() => {
+            navigator.clipboard.writeText(`${title} ${url}`).then(() => {
+              alert('Link copiado! Cole no Instagram.');
+              window.open(shareLinks.instagram, '_blank');
+            });
+          }}
           color="error"
         >
           <Instagram />

@@ -10,6 +10,7 @@ import Footer from "../src/componentes/footer";
 import '../styles/globals.css';
 import theme from "../styles/theme";
 import EnderecoContato from "../src/componentes/enderecoContato";
+import ConsentimentoPrivacidade from "../src/componentes/consentimentoPrivacidade";
 // Criando cache do Emotion
 const clientSideEmotionCache = createEmotionCache();
 
@@ -22,20 +23,21 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <DefaultSeo
-            title="Cotidente - Melhor Clínica Odontológica"
-            description="Clínica odontológica especializada em tratamentos modernos e atendimento humanizado."
+            title="Cotidente - Clínica Odontológica Especializada"
+            description="Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade."
             openGraph={{
               type: "website",
-              url: "https://seusite.com.br",
-              title: "Cotidente",
+              url: "https://www.cotidente.com.br",
+              title: "Cotidente - Clínica Odontológica",
               description: "Dentistas especializados para o seu sorriso!",
-              images: [{ url: "https://seusite.com.br/logoHeader.webp", width: 1200, height: 630, alt: "Capa do site" }],
+              images: [{ url: "https://www.cotidente.com.br/imagem_graph.png", width: 1200, height: 630, alt: "Logo Cotidente" }],
             }}
           />
         {/* CssBaseline para reset de estilos */}
         <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header/>
+  <ConsentimentoPrivacidade />
         <Component {...pageProps} />
         <EnderecoContato/>
         <Footer/>

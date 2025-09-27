@@ -37,7 +37,7 @@ export default function Home() {
         <title>Clínica Odontologia Cotidente</title>
         <meta
           name="description"
-          content="Clínica Odontológica Cotidete, Dra Gesiely Espalva, Av Rotary N° 100 Jardim
+          content="Clínica Odontológica Cotidente, Dra Gesiely Espalva, Av Rotary N° 100 Jardim
        Nomura Cotia-SP 06717-090 Brasil"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -161,7 +161,7 @@ export default function Home() {
       </Box>
       <Container id="conteudo" sx={{ p: { xs: 2, sm: 10 } }}>
         <Grid2 container spacing={8}>
-          <Grid2 item size={{xs:12 , md:6}}  p={3} >
+          <Grid2 item size={{ xs: 12, md: 6 }} p={3}>
             <Image
               src={
                 "https://nepoodonto.com.br/wp-content/uploads/2021/12/nepo-odontologia-post2.jpeg"
@@ -172,26 +172,26 @@ export default function Home() {
               alt="Foto padrão"
             />
           </Grid2>
-          <Grid2 item size={{xs:12 , md:6}} >
+          <Grid2 item size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h3"
-              component={'h2'}
+              component={"h2"}
               sx={{ fontWeight: "bold", mt: 2, color: "#3ea1f1" }}
             >
               {conteudoData.titulo}
             </Typography>
-            <Typography variant="h6" component={'h4'} sx={{ letterSpacing: 2, mt: 2 }}>
+            <Typography
+              variant="h6"
+              component={"h4"}
+              sx={{ letterSpacing: 2, mt: 2 }}
+            >
               {conteudoData.subtitulo}
             </Typography>
-            <Typography variant="body1" component={'p'} sx={{ mt: 3 }}>
+            <Typography variant="body1" component={"p"} sx={{ mt: 3 }}>
               {conteudoData.descricao}
             </Typography>
             <Typography sx={{ mt: 3 }}>
-              {" "}
-              <Link href={"/sobre"} style={{ color: "#3ea1f1" }}>
-                CLIQUE AQUI
-              </Link>{" "}
-              e veja mais vantagens exclusivas da nossa clínica!
+              Veja mais vantagens exclusivas da nossa clínica!
             </Typography>
             <ShareButtons
               url={"https://www.cotidente.com.br/"}
@@ -204,8 +204,11 @@ export default function Home() {
           <Grid xs={6}>{/* Espaço vazio */}</Grid>
         </Grid2>
       </Container>
-      <Box sx={{ backgroundColor: "#000", padding: {xs:1 , md:15}}} id='tratamento'>
-        <Container >
+      <Box
+        sx={{ backgroundColor: "#000", padding: { xs: 1, md: 15 } }}
+        id="tratamento"
+      >
+        <Container>
           <Typography
             color={"primary"}
             textTransform={"uppercase"}

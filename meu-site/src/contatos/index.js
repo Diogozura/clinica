@@ -1,72 +1,82 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import {
+  Button,
+  TextField,
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Container,
+} from "@mui/material";
+import tratamentos from "../mock/tratamentosContato.json";
+import Head from "next/head";
+const maskPhone = (value) => {
+  return value
+    .replace(/\D/g, "") // Remove caracteres não numéricos
+    .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses ao DDD
+    .replace(/(\d{5})(\d)/, "$1-$2") // Adiciona o hífen no número
+    .slice(0, 15); // Limita o número ao formato correto
+};
 
-export default function Contato1() {
-  const [formData, setFormData] = useState({
+export default function Contato2() {
+  const [form, setForm] = useState({
     nome: "",
-    email: "",
+    whatsapp: "",
+    tratamento: "",
     mensagem: "",
   });
-  const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [erros, setErros] = useState({
+    nome: false,
+    whatsapp: false,
+    tratamento: false,
+    mensagem: false,
+  });
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setStatus("Enviando...");
+  const handleChange = (campo, valor) => {
+    if (campo === "whatsapp") {
+      valor = maskPhone(valor);
+      // Se o usuário começar a digitar novamente, remove o erro
+      setErros((prev) => ({ ...prev, whatsapp: false }));
+    }
 
-  //   const SHEETDB_URL = "https://sheetdb.io/api/v1/x5i91zg4yl4ix";
+    setForm((prev) => ({ ...prev, [campo]: valor }));
 
-  //   try {
-  //     const response = await fetch(SHEETDB_URL, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     if (response.ok) {
-  //       setStatus("Dados enviados para o Google Sheets!");
-  //       setFormData({ nome: "", email: "", mensagem: "" });
-  //     } else {
-  //       throw new Error("Erro ao enviar.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Erro no envio:", error);
-  //     setStatus("Erro ao enviar. Tente novamente.");
-  //   }
-  // };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Enviando...");
-
-    const FORM_SUBMIT_URL = "https://formsubmit.co/lucindo1736@uorak.com";
-
-    try {
-      const response = await fetch(FORM_SUBMIT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) throw new Error("Erro ao enviar e-mail.");
-
-   
-      setStatus("Formulário enviado!");
-      setFormData({ nome: "", email: "", mensagem: "" });
-    } catch (error) {
-  
-      setStatus("Erro ao enviar. Tente novamente.");
+    // Valida enquanto o usuário digita (exceto WhatsApp)
+    if (campo !== "whatsapp") {
+      setErros((prev) => ({ ...prev, [campo]: valor.trim() === "" }));
     }
   };
-  return (
-    <>
-      <h2>Entre em Contato</h2>
 
-      <p>{status}</p>
-      <Container maxWidth="sm" sx={{ height: "80vh", padding: 4 }}>
+  const validarFormulario = () => {
+    const novosErros = {
+      nome: form.nome.trim() === "",
+      whatsapp: form.whatsapp.replace(/\D/g, "").length < 11, // Validação do WhatsApp só ao tentar enviar
+      tratamento: form.tratamento.trim() === "",
+      mensagem: form.mensagem.trim() === "",
+    };
+
+    setErros(novosErros);
+    return !Object.values(novosErros).includes(true);
+  };
+
+  const enviarParaWhatsApp = () => {
+    if (!validarFormulario()) return;
+  
+    const numeroWhatsApp = "5511975645902"; // Substitua pelo seu número com DDD
+    const textoMensagem = encodeURIComponent(
+      `Olá, tenho interesse! \n\nTratamento: ${form.tratamento},\n ${form.mensagem}`
+    );
+
+    const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${textoMensagem}`;
+    window.open(linkWhatsApp, "_blank");
+  };
+
+  return ( 
+    <>
+      <Container maxWidth="sm" sx={{ height: "80vh", padding: 1 }}>
         <Box
           sx={{
             display: "flex",
@@ -75,42 +85,117 @@ export default function Contato1() {
             maxWidth: 400,
             margin: "auto",
             padding: 3,
-            backgroundColor: "#f9f9f9",
-            borderRadius: 2,
-            boxShadow: 3,
+            // backgroundColor: "#f9f9f9",
+        
           }}
         >
-          <Typography variant="h6" textAlign="center">
-           Contato - email e salvar no google Planilhas
-          </Typography>
+          <TextField
+            label="Nome"
+            value={form.nome}
+            onChange={(e) => handleChange("nome", e.target.value)}
+            fullWidth
+            error={erros.nome}
+            helperText={erros.nome ? "Nome é obrigatório" : ""}
+            sx={{
+              input: { color: "white" },
+              "& label": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+          />
+          <TextField
+            label="WhatsApp"
+            value={form.whatsapp}
+            onChange={(e) => handleChange("whatsapp", e.target.value)}
+            fullWidth
+            error={erros.whatsapp}
+            helperText={
+              erros.whatsapp ? "Informe um número válido com DDD" : ""
+            }
+            sx={{
+              input: { color: "white" },
+              "& label": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+          />
+          <FormControl
+            fullWidth
+            error={erros.tratamento}
+            sx={{
+              input: { color: "white" },
+              "& label": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+          >
+            <InputLabel id="demo-simple-select-label">
+              Tratamento desejado
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              label="Tratamento desejado"
+              value={form.tratamento}
+              onChange={(e) => handleChange("tratamento", e.target.value)}
+              sx={{
+                color: "white", // Texto branco quando um item for selecionado
+                "& .MuiSelect-icon": { color: "white" }, // Ícone da setinha branco
+              }}
+            >
+              {tratamentos.map((item) => (
+                <MenuItem key={item.id} value={item.name}>
+                  {item.name}
+                </MenuItem>
+              ))}
+            </Select>
+            {erros.tratamento && (
+              <Typography variant="caption" color="error">
+                Escolha um tratamento
+              </Typography>
+            )}
+          </FormControl>
+          <TextField
+            label="Mensagem"
+            value={form.mensagem}
+            onChange={(e) => handleChange("mensagem", e.target.value)}
+            multiline
+            rows={3}
+            fullWidth
+            error={erros.mensagem}
+            helperText={erros.mensagem ? "Mensagem é obrigatória" : ""}
+            sx={{
+              "& .MuiInputBase-input": { color: "white" }, // Para texto normal
+              "& .MuiInputBase-inputMultiline": { color: "white" }, // Para multiline
+              "& label": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+          />
 
-          
-        <TextField
-          type="text"
-          name="nome"
-          
-          placeholder="Seu Nome"
-          value={formData.nome}
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          type="email"
-          name="email"
-          placeholder="Seu Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <TextField
-          name="mensagem"
-          placeholder="Sua Mensagem"
-          value={formData.mensagem}
-          onChange={handleChange}
-          required
-        />
-        <Button onClick={handleSubmit}>Enviar</Button>
-     
+          <Button
+            variant="contained"
+            color="success"
+            onClick={enviarParaWhatsApp}
+          >
+            Enviar para WhatsApp
+          </Button>
         </Box>
       </Container>
     </>

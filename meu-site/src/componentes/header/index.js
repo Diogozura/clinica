@@ -64,11 +64,9 @@ const Header = () => {
           Equipe
         </Button>
       </Grid>
+     
       <Grid item>
-        <Button color="inherit">Diferenciais</Button>
-      </Grid>
-      <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#contato")}>
+        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
           Contato
         </Button>
       </Grid>
