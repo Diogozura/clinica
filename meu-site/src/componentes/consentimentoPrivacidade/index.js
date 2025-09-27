@@ -33,13 +33,29 @@ export default function ConsentimentoPrivacidade() {
     }
   }, []);
 
+  const emitirEventoConsentimento = (accepted) => {
+    try {
+      window.dispatchEvent(new CustomEvent('consent-changed', { detail: { accepted } }));
+    } catch {}
+  };
+
   const aceitar = () => {
     try {
       const payload = { accepted: true, acceptedAt: new Date().toISOString(), version: 1 };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      emitirEventoConsentimento(true);
     } catch {
       // se falhar, apenas fecha
     }
+    setOpen(false);
+  };
+
+  const recusar = () => {
+    try {
+      const payload = { accepted: false, acceptedAt: new Date().toISOString(), version: 1 };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+      emitirEventoConsentimento(false);
+    } catch {}
     setOpen(false);
   };
 
@@ -67,6 +83,9 @@ export default function ConsentimentoPrivacidade() {
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', gap: 1, ml: 'auto' }}>
+              <Button variant="outlined" color="inherit" size="small" onClick={recusar}>
+                Recusar
+              </Button>
               <Button variant="outlined" color="inherit" size="small" onClick={() => setOpen(false)}>
                 Agora não
               </Button>

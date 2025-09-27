@@ -208,6 +208,11 @@ export default function PoliticaPrivacidade() {
               possam ser do seu interesse.
             </Typography>
 
+            <Typography variant="body2" paragraph>
+              Se você preferir não ver anúncios personalizados, pode desativar essa funcionalidade nas configurações de anúncios do Google: 
+              <MUILink href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">https://adssettings.google.com/</MUILink>.
+            </Typography>
+
             <Typography id="afiliados" variant="h6" sx={{ fontWeight: 600 }} gutterBottom>
               7.3 Afiliados
             </Typography>
@@ -288,6 +293,9 @@ export default function PoliticaPrivacidade() {
               Se tiver dúvidas sobre como lidamos com dados do usuário e informações pessoais, entre em contato pelos nossos
               canais oficiais de atendimento. E-mail:{' '}
               <MUILink href="mailto:contato@cotidente.com.br">contato@cotidente.com.br</MUILink>.
+            </Typography>
+            <Typography paragraph textAlign="justify">
+              Encarregado/DPO: Caso necessário, contate nosso responsável por proteção de dados pelo mesmo e-mail. Inclua no assunto &quot;Dados Pessoais - Solicitação&quot; e informe claramente qual o direito que deseja exercer.
             </Typography>
           </Box>
 
