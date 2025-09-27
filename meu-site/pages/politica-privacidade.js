@@ -53,6 +53,7 @@ export default function PoliticaPrivacidade() {
           pt: { xs: 3, md: 4 },
           pb: { xs: 2, md: 3 },
           mb: 2,
+           mt: 4 
         }}>
           <Typography component="h1" variant="h4" sx={{ fontWeight: 600 }}>
             Política de Privacidade
