@@ -26,17 +26,17 @@ export default function Footer() {
               HORÁRIO DE FUNCIONAMENTO:
             </Typography>
             <Typography color="primary.contrastText">
-              Segunda a Sexta: 8h às 19h
+              Segunda a Sexta: 9h às 18h
             </Typography>
             <Typography color="primary.contrastText">
-              Sábado: 8h às 12h
+              Sábado: 9h às 13h
             </Typography>
             <br />
             <Typography color="primary.contrastText">
               Resp. Téc.: Dra.Glesiely
             </Typography>
             <Typography color="primary.contrastText">
-              CRO/SP: **** | CRO/SP CL: ****
+              CRO/SP: 103865 | CRO/SP CL: ****
             </Typography>
             <Box
               sx={{

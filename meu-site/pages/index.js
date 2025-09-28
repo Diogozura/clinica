@@ -6,13 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+const Carousel = dynamic(() => import('react-multi-carousel'), { ssr: false });
 // Simulação de importação do arquivo JSON
 import conteudoData from "../src/mock/conteudo.json";
 import ShareButtons from "../src/componentes/compartilhamento";
 import CustomizedAccordions from "../src/componentes/Accordion";
-import Destaque from "../src/componentes/destaque";
+const Destaque = dynamic(() => import('../src/componentes/destaque'), { ssr: false });
 import Vantagens from "../src/mock/vantagens.json";
 import MissaoVisaoValores from "../src/mock/missaoVisaoValores.json";
 
@@ -29,6 +30,13 @@ export default function Home() {
     const handleScroll = () => setOffset(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Carrega CSS do carousel apenas no client
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      import('react-multi-carousel/lib/styles.css');
+    }
   }, []);
 
   return (
