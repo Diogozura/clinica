@@ -35,6 +35,29 @@ const Header = () => {
   const [subMenuOpen, setSubMenuOpen] = useState(false); // Controle para mostrar/ocultar a lista de tratamentos
   const router = useRouter();
 
+  // Função helper para rolar até um elemento com o id informado sem alterar a URL
+  const handleScrollTo = async (id) => {
+    const targetId = id.replace("#", "");
+    // Se já estivermos na home, apenas faz o scroll
+    if (router.pathname === "/") {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    // Se não estivermos na home, navega para '/' sem hash e depois faz o scroll
+    await router.push("/");
+    // Pequeno delay para garantir que a página foi renderizada
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 150);
+  };
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -55,24 +78,23 @@ const Header = () => {
   const renderDesktopMenu = () => (
     <Grid container justifyContent="center" spacing={3}>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
+        <Button color="inherit" onClick={() => handleScrollTo("#conteudo")}>
           Sobre Nós
         </Button>
       </Grid>
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#conteudo")}>
+        <Button color="inherit" onClick={() =>handleScrollTo("#tratamento")}>
+          Tratamentos
+        </Button>
+      </Grid>
+      <Grid item>
+        <Button color="inherit" onClick={() => handleScrollTo("#equipe")}>
           Equipe
         </Button>
       </Grid>
-     
       <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
+        <Button color="inherit" onClick={() => handleScrollTo("#contato")}>
           Contato
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button color="inherit" onClick={() => router.push("/#tratamento")}>
-        Tratamentos
         </Button>
       </Grid>
     </Grid>
@@ -93,30 +115,50 @@ const Header = () => {
       }}
     >
       <List>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
-            <ListItemText primary="Sobre Nós" />
-          </Link>
+        <ListItem
+          button
+          onClick={() => {
+            toggleDrawer();
+            handleScrollTo("#conteudo");
+          }}
+        >
+          <ListItemText primary="Sobre Nós" />
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
-            <ListItemText primary="Equipe" />
-          </Link>
+        <ListItem
+          button
+          onClick={() => {
+            toggleDrawer();
+            handleScrollTo("#conteudo");
+          }}
+        >
+          <ListItemText primary="Equipe" />
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#conteudo" passHref>
-            <ListItemText primary="Diferenciais" />
-          </Link>
+        <ListItem
+          button
+          onClick={() => {
+            toggleDrawer();
+            handleScrollTo("#conteudo");
+          }}
+        >
+          <ListItemText primary="Diferenciais" />
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#contato" passHref>
-            <ListItemText primary="Contato" />
-          </Link>
+        <ListItem
+          button
+          onClick={() => {
+            toggleDrawer();
+            handleScrollTo("#contato");
+          }}
+        >
+          <ListItemText primary="Contato" />
         </ListItem>
-        <ListItem button onClick={toggleDrawer}>
-          <Link href="/#tratamentos" passHref>
-            <ListItemText primary="Tratamentos" />
-          </Link>
+        <ListItem
+          button
+          onClick={() => {
+            toggleDrawer();
+            handleScrollTo("#tratamentos");
+          }}
+        >
+          <ListItemText primary="Tratamentos" />
         </ListItem>
         <Divider />
         {/* Redes sociais à direita */}
@@ -128,7 +170,11 @@ const Header = () => {
           >
             <Facebook />
           </IconButton>
-          <IconButton color="inherit" href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902" target="_blank">
+          <IconButton
+            color="inherit"
+            href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902"
+            target="_blank"
+          >
             <WhatsApp />
           </IconButton>
           <IconButton
@@ -144,7 +190,13 @@ const Header = () => {
   );
 
   return (
-    <AppBar  sx={{  position: { xs: "relative", sm: "fixed" }, backgroundColor: "white", color: "black" }}>
+    <AppBar
+      sx={{
+        position: { xs: "relative", sm: "fixed" },
+        backgroundColor: "white",
+        color: "black",
+      }}
+    >
       <Toolbar
         sx={{
           display: "flex",
@@ -170,7 +222,7 @@ const Header = () => {
         </Box>
 
         {/* Ícone de menu hambúrguer para dispositivos móveis */}
-        <Box sx={{ display: { xs: "block",  sm: "none" } }}>
+        <Box sx={{ display: { xs: "block", sm: "none" } }}>
           <IconButton color="inherit" onClick={toggleDrawer}>
             <MenuIcon />
           </IconButton>
@@ -184,7 +236,11 @@ const Header = () => {
           >
             <Facebook />
           </IconButton>
-          <IconButton color="inherit" href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902" target="_blank">
+          <IconButton
+            color="inherit"
+            href="https://api.whatsapp.com/send?1=pt_BR&phone=5511975645902"
+            target="_blank"
+          >
             <WhatsApp />
           </IconButton>
           <IconButton

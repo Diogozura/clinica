@@ -38,6 +38,27 @@ export default function Home() {
       import('react-multi-carousel/lib/styles.css');
     }
   }, []);
+    const handleScrollTo = async (id) => {
+    const targetId = id.replace("#", "");
+    // Se já estivermos na home, apenas faz o scroll
+    if (router.pathname === "/") {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    // Se não estivermos na home, navega para '/' sem hash e depois faz o scroll
+    await router.push("/");
+    // Pequeno delay para garantir que a página foi renderizada
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 150);
+  };
 
   return (
     <>
@@ -101,7 +122,7 @@ export default function Home() {
               variant="contained"
               color="primary"
               sx={{ mt: 3, fontSize: "1rem", fontWeight: "bold" }}
-              onClick={() => router.push("/#conteudo")}
+              onClick={() => handleScrollTo("#conteudo")}
             >
               ➤ VAMOS LÁ
             </Button>
@@ -214,9 +235,9 @@ export default function Home() {
       </Container>
       <Box
         sx={{ backgroundColor: "#000", padding: { xs: 1, md: 15 } }}
-        id="tratamento"
+       
       >
-        <Container>
+        <Container  id="tratamento">
           <Typography
             color={"primary"}
             textTransform={"uppercase"}
@@ -239,7 +260,7 @@ export default function Home() {
           <Destaque />
         </Container>
       </Box>
-      <Box sx={{ padding: 3 }}>
+      <Box sx={{ padding: 3 }} id="equipe">
         <Container>
           <Grid2 container spacing={8}>
             <Grid2 item size={{ xs: 12, md: 6 }}>

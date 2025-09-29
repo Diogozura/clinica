@@ -11,7 +11,7 @@ export default function Destaque(){
                     <>
                      <Box maxWidth={260} m={1}>
                         <Image width={248} height={165} layout="responsive" alt={i.titulo} src={i.imagem}/>
-                        <Link href={i.link}><Typography color="primary">{i.titulo}</Typography></Link>
+                        <Typography color="primary">{i.titulo}</Typography>
                         <Typography color="primary.contrastText" variant="body2" component={'p'}>{i.descricao}</Typography>
                     </Box>
                     </>

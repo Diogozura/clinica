@@ -76,7 +76,9 @@ export default function Contato2() {
 
   return ( 
     <>
-      <Container maxWidth="sm" sx={{ height: "80vh", padding: 1 }}>
+      <Container maxWidth="sm" sx={{ height: {xs:'none' , md:'80vh'}, textAlign: 'center', padding: 1 }}>
+        <Typography color="white" variant="h4" component={'h3'}> Contato</Typography>
+        <Typography color="white" variant="h6" component={'p'}>Agende sua consulta agora mesmo</Typography>
         <Box
           sx={{
             display: "flex",
@@ -85,8 +87,6 @@ export default function Contato2() {
             maxWidth: 400,
             margin: "auto",
             padding: 3,
-            // backgroundColor: "#f9f9f9",
-        
           }}
         >
           <TextField
