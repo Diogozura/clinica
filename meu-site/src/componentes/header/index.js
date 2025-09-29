@@ -5,25 +5,22 @@ import {
   Button,
   Grid,
   Box,
-  Menu,
-  MenuItem,
+
   Drawer,
   List,
   ListItem,
   ListItemText,
   Divider,
-  Collapse,
+
 } from "@mui/material";
 import {
   Facebook,
   WhatsApp,
   Instagram,
-  ArrowDropDown,
   Menu as MenuIcon,
-  ExpandLess,
-  ExpandMore,
+
 } from "@mui/icons-material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import tratamentos from "../../mock/telas.json";
 import { useRouter } from "next/router";
@@ -33,7 +30,10 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [subMenuOpen, setSubMenuOpen] = useState(false); // Controle para mostrar/ocultar a lista de tratamentos
+  const [showHeader, setShowHeader] = useState(true); // controla visibilidade ao rolar
   const router = useRouter();
+
+  const lastScrollY = useRef(0);
 
   // Função helper para rolar até um elemento com o id informado sem alterar a URL
   const handleScrollTo = async (id) => {
@@ -58,18 +58,36 @@ const Header = () => {
     }, 150);
   };
 
+  // Efeito para mostrar/esconder o header ao rolar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY || window.pageYOffset;
+
+      // pequena tolerância para evitar flicker
+      if (Math.abs(currentScrollY - lastScrollY.current) < 5) return;
+
+      if (currentScrollY <= 0) {
+        setShowHeader(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        // rolando para baixo
+        setShowHeader(false);
+      } else {
+        // rolando para cima
+        setShowHeader(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    setSubMenuOpen(false); // Fecha o submenu de tratamentos ao fechar o menu
-  };
-
-  const handleSubMenuToggle = () => {
-    setSubMenuOpen(!subMenuOpen); // Alterna a visibilidade do submenu de tratamentos
-  };
+ 
 
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
@@ -182,11 +200,20 @@ const Header = () => {
   );
 
   return (
-    <AppBar
+    <>
+      <AppBar
       sx={{
-        position: { xs: "relative", sm: "fixed" },
+        // Tornar fixed em todas as larguras para aplicar o comportamento também em mobile
+        position: "fixed",
+       
+        left: 0,
+        right: 0,
         backgroundColor: "white",
         color: "black",
+        transition: "transform 300ms ease, opacity 300ms ease",
+        transform: showHeader ? "translateY(0)" : "translateY(-100%)",
+        opacity: showHeader ? 1 : 0,
+        zIndex: (theme) => theme.zIndex.appBar + 1,
       }}
     >
       <Toolbar
@@ -247,7 +274,11 @@ const Header = () => {
 
       {/* Menu lateral para dispositivos móveis */}
       {renderMobileMenu()}
-    </AppBar>
+      </AppBar>
+
+      {/* Espaçador para evitar que o conteúdo fique por baixo do AppBar quando fixed */}
+  <Box sx={{ height: { xs: "calc(56px + 10px)", sm: "64px" }, width: "100%" }} />
+    </>
   );
 };
 
