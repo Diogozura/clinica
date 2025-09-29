@@ -13,7 +13,7 @@ export default function EnderecoContato(){
             left: 0,
             width: "100%", // Ocupa toda a largura da tela
             zIndex: 1000, // Garante que fique acima de outros elementos
-            display: {xs:'none' , md:'block'}
+            display: {xs:'block' , md:'block'}
           }}
         >
         <Grid container spacing={0}>

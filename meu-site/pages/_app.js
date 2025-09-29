@@ -7,7 +7,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { DefaultSeo } from "next-seo";
 import Header from "../src/componentes/header";
 import Footer from "../src/componentes/footer";
-import '../styles/globals.css';
+import "../styles/globals.css";
 import theme from "../styles/theme";
 import EnderecoContato from "../src/componentes/enderecoContato";
 import ConsentimentoPrivacidade from "../src/componentes/consentimentoPrivacidade";
@@ -21,15 +21,16 @@ export default function MyApp(props) {
   React.useEffect(() => {
     // Carrega scripts do Google apenas se houver consentimento
     try {
-      if (typeof window !== 'undefined' && hasAccepted()) {
+      if (typeof window !== "undefined" && hasAccepted()) {
         // exemplo: gtag
         if (!window.__gtag_loaded) {
-          const s = document.createElement('script');
+          const s = document.createElement("script");
           s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=UA-109476301-1';
+          s.src = "https://www.googletagmanager.com/gtag/js?id=UA-109476301-1";
           document.head.appendChild(s);
-          const inline = document.createElement('script');
-          inline.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109476301-1');";
+          const inline = document.createElement("script");
+          inline.innerHTML =
+            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109476301-1');";
           document.head.appendChild(inline);
           window.__gtag_loaded = true;
         }
@@ -41,21 +42,26 @@ export default function MyApp(props) {
       const accepted = e?.detail?.accepted === true;
       if (accepted) {
         if (!window.__gtag_loaded) {
-          const s = document.createElement('script');
+          const s = document.createElement("script");
           s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=UA-109476301-1';
+          s.src = "https://www.googletagmanager.com/gtag/js?id=UA-109476301-1";
           document.head.appendChild(s);
-          const inline = document.createElement('script');
-          inline.innerHTML = "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109476301-1');";
+          const inline = document.createElement("script");
+          inline.innerHTML =
+            "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-109476301-1');";
           document.head.appendChild(inline);
           window.__gtag_loaded = true;
         }
       }
     };
-    try { window.addEventListener('consent-changed', handler); } catch {}
+    try {
+      window.addEventListener("consent-changed", handler);
+    } catch {}
 
     return () => {
-      try { window.removeEventListener('consent-changed', handler); } catch {}
+      try {
+        window.removeEventListener("consent-changed", handler);
+      } catch {}
     };
   }, []);
 
@@ -65,25 +71,33 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <DefaultSeo
-            title="Cotidente - Clínica Odontológica Especializada"
-            description="Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade."
-            openGraph={{
-              type: "website",
-              url: "https://www.cotidente.com.br",
-              title: "Cotidente - Clínica Odontológica",
-              description: "Dentistas especializados para o seu sorriso!",
-              images: [{ url: "https://www.cotidente.com.br/imagem_graph.png", width: 1200, height: 630, alt: "Logo Cotidente" }],
-            }}
-          />
-        {/* CssBaseline para reset de estilos */}
-        <ThemeProvider theme={theme}>
+        title="Cotidente - Clínica Odontológica Especializada"
+        description="Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade."
+        openGraph={{
+          type: "website",
+          url: "https://www.cotidente.com.br",
+          title: "Cotidente - Clínica Odontológica",
+          description:
+            "Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade.",
+          images: [
+            {
+              url: "https://www.cotidente.com.br/logo-cotidente-graph.png",
+              width: 1200,
+              height: 630,
+              alt: "Logo Cotidente",
+            },
+          ],
+        }}
+      />
+      {/* CssBaseline para reset de estilos */}
+      <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header/>
-  <ConsentimentoPrivacidade />
+        <Header />
+        <ConsentimentoPrivacidade />
         <Component {...pageProps} />
-        <EnderecoContato/>
-        <Footer/>
-        </ThemeProvider>
+        <EnderecoContato />
+        <Footer />
+      </ThemeProvider>
     </CacheProvider>
   );
 }
