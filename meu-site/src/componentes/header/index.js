@@ -128,19 +128,19 @@ const Header = () => {
           button
           onClick={() => {
             toggleDrawer();
-            handleScrollTo("#conteudo");
+            handleScrollTo("#tratamento");
           }}
         >
-          <ListItemText primary="Equipe" />
+          <ListItemText primary="Tratamentos" />
         </ListItem>
         <ListItem
           button
           onClick={() => {
             toggleDrawer();
-            handleScrollTo("#conteudo");
+            handleScrollTo("#equipe");
           }}
         >
-          <ListItemText primary="Diferenciais" />
+          <ListItemText primary="Equipe" />
         </ListItem>
         <ListItem
           button
@@ -151,15 +151,7 @@ const Header = () => {
         >
           <ListItemText primary="Contato" />
         </ListItem>
-        <ListItem
-          button
-          onClick={() => {
-            toggleDrawer();
-            handleScrollTo("#tratamentos");
-          }}
-        >
-          <ListItemText primary="Tratamentos" />
-        </ListItem>
+       
         <Divider />
         {/* Redes sociais à direita */}
         <ListItem sx={{ display: "flex", gap: 2 }}>
