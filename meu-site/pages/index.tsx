@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Button, Container, Grid, Grid2, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Grid2, Typography, Modal, IconButton } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -27,9 +28,17 @@ import MissaoVisaoValores from "../src/mock/missaoVisaoValores.json";
 import { Conteudo, Vantagem, MissaoVisaoValor, MarketingContent } from "../src/types";
 
 const images = [
-  "/clinica/consultorio1.webp",
-  "/clinica/consultorio2.webp",
-  "/clinica/consultorio3.webp",
+  "/clinica/entrada.jpeg",
+  // "/clinica/consultorio1.webp",
+  // "/clinica/consultorio2.webp",
+  // "/clinica/consultorio3.webp",
+  "/clinica/2.png",
+  "/clinica/4.png",
+  "/clinica/5.png",
+  "/clinica/6.png",
+  "/clinica/7.png",
+  "/clinica/8.png",
+  "/clinica/1.png",
 ];
 
 const conteudo: Conteudo = conteudoData;
@@ -39,6 +48,8 @@ const mkt = marketing as unknown as MarketingContent;
 
 export default function Home() {
   const [offset, setOffset] = React.useState(0);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [selectedImage, setSelectedImage] = React.useState<string>("");
   const router = useRouter();
   
   React.useEffect(() => {
@@ -103,7 +114,7 @@ export default function Home() {
             left: 0,
             width: "100%",
             height: "100%",
-            backgroundImage: `url('/clinica/recepcao.webp')`,
+            backgroundImage: `url('/clinica/entrada.jpeg')`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             transform: `translateY(${offset * 0.5}px)`, // Efeito Parallax
@@ -155,7 +166,19 @@ export default function Home() {
                     key={index}
                     component="img"
                     src={src}
-                    sx={{ width: "100%", borderRadius: 2 }}
+                    onClick={() => {
+                      setSelectedImage(src);
+                      setModalOpen(true);
+                    }}
+                    sx={{ 
+                      width: "100%", 
+                      borderRadius: 2,
+                      cursor: "pointer",
+                      transition: "transform 0.2s",
+                      "&:hover": {
+                        transform: "scale(1.02)"
+                      }
+                    }}
                   />
                 ))}
               </Carousel>
@@ -163,6 +186,53 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
+
+      {/* Modal para visualizar imagem ampliada */}
+      <Modal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            position: 'relative',
+            maxWidth: '90vw',
+            maxHeight: '90vh',
+            outline: 'none',
+          }}
+        >
+          <IconButton
+            onClick={() => setModalOpen(false)}
+            sx={{
+              position: 'absolute',
+              top: 10,
+              right: 10,
+              bgcolor: 'rgba(255, 255, 255, 0.9)',
+              '&:hover': {
+                bgcolor: 'rgba(255, 255, 255, 1)',
+              },
+              zIndex: 1,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <Box
+            component="img"
+            src={selectedImage}
+            alt="Imagem ampliada"
+            sx={{
+              maxWidth: '100%',
+              maxHeight: '90vh',
+              borderRadius: 2,
+              boxShadow: 24,
+            }}
+          />
+        </Box>
+      </Modal>
       <Box
         sx={{ display: { xs: "block", md: "none", lg: "none" } }}
       >
@@ -183,7 +253,23 @@ export default function Home() {
           }}
         >
           {images.map((src, index) => (
-            <Box key={index} component="img" src={src} sx={{ width: "100%" }} />
+            <Box 
+              key={index} 
+              component="img" 
+              src={src} 
+              onClick={() => {
+                setSelectedImage(src);
+                setModalOpen(true);
+              }}
+              sx={{ 
+                width: "100%",
+                cursor: "pointer",
+                transition: "transform 0.2s",
+                "&:hover": {
+                  transform: "scale(1.02)"
+                }
+              }} 
+            />
           ))}
         </Carousel>
       </Box>
