@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import {
   Button,
   TextField,
@@ -9,10 +9,25 @@ import {
   Select,
   MenuItem,
   Container,
+  SelectChangeEvent,
 } from "@mui/material";
 import tratamentos from "../mock/tratamentosContato.json";
-import Head from "next/head";
-const maskPhone = (value) => {
+
+interface FormData {
+  nome: string;
+  whatsapp: string;
+  tratamento: string;
+  mensagem: string;
+}
+
+interface FormErrors {
+  nome: boolean;
+  whatsapp: boolean;
+  tratamento: boolean;
+  mensagem: boolean;
+}
+
+const maskPhone = (value: string): string => {
   return value
     .replace(/\D/g, "") // Remove caracteres não numéricos
     .replace(/(\d{2})(\d)/, "($1) $2") // Adiciona parênteses ao DDD
@@ -21,28 +36,30 @@ const maskPhone = (value) => {
 };
 
 export default function Contato2() {
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormData>({
     nome: "",
     whatsapp: "",
     tratamento: "",
     mensagem: "",
   });
 
-  const [erros, setErros] = useState({
+  const [erros, setErros] = useState<FormErrors>({
     nome: false,
     whatsapp: false,
     tratamento: false,
     mensagem: false,
   });
 
-  const handleChange = (campo, valor) => {
+  const handleChange = (campo: keyof FormData, valor: string) => {
+    let valorProcessado = valor;
+    
     if (campo === "whatsapp") {
-      valor = maskPhone(valor);
+      valorProcessado = maskPhone(valor);
       // Se o usuário começar a digitar novamente, remove o erro
       setErros((prev) => ({ ...prev, whatsapp: false }));
     }
 
-    setForm((prev) => ({ ...prev, [campo]: valor }));
+    setForm((prev) => ({ ...prev, [campo]: valorProcessado }));
 
     // Valida enquanto o usuário digita (exceto WhatsApp)
     if (campo !== "whatsapp") {
@@ -50,10 +67,10 @@ export default function Contato2() {
     }
   };
 
-  const validarFormulario = () => {
-    const novosErros = {
+  const validarFormulario = (): boolean => {
+    const novosErros: FormErrors = {
       nome: form.nome.trim() === "",
-      whatsapp: form.whatsapp.replace(/\D/g, "").length < 11, // Validação do WhatsApp só ao tentar enviar
+      whatsapp: form.whatsapp.replace(/\D/g, "").length < 11,
       tratamento: form.tratamento.trim() === "",
       mensagem: form.mensagem.trim() === "",
     };
@@ -64,8 +81,8 @@ export default function Contato2() {
 
   const enviarParaWhatsApp = () => {
     if (!validarFormulario()) return;
-  
-    const numeroWhatsApp = "5511975645902"; // Substitua pelo seu número com DDD
+
+    const numeroWhatsApp = "5511975645902";
     const textoMensagem = encodeURIComponent(
       `Olá, tenho interesse! \n\nTratamento: ${form.tratamento},\n ${form.mensagem}`
     );
@@ -74,9 +91,9 @@ export default function Contato2() {
     window.open(linkWhatsApp, "_blank");
   };
 
-  return ( 
+  return (
     <>
-      <Container maxWidth="sm" sx={{ height: {xs:'none' , md:'80vh'}, textAlign: 'center', padding: 1 }}>
+      <Container maxWidth="sm" sx={{ height: { xs: 'none', md: '80vh' }, textAlign: 'center', padding: 1 }}>
         <Typography color="white" variant="h4" component={'h3'}> Contato</Typography>
         <Typography color="white" variant="h6" component={'p'}>Agende sua consulta agora mesmo</Typography>
         <Box
@@ -92,7 +109,7 @@ export default function Contato2() {
           <TextField
             label="Nome"
             value={form.nome}
-            onChange={(e) => handleChange("nome", e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("nome", e.target.value)}
             fullWidth
             error={erros.nome}
             helperText={erros.nome ? "Nome é obrigatório" : ""}
@@ -110,7 +127,7 @@ export default function Contato2() {
           <TextField
             label="WhatsApp"
             value={form.whatsapp}
-            onChange={(e) => handleChange("whatsapp", e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("whatsapp", e.target.value)}
             fullWidth
             error={erros.whatsapp}
             helperText={
@@ -149,10 +166,10 @@ export default function Contato2() {
               id="demo-simple-select-autowidth"
               label="Tratamento desejado"
               value={form.tratamento}
-              onChange={(e) => handleChange("tratamento", e.target.value)}
+              onChange={(e: SelectChangeEvent) => handleChange("tratamento", e.target.value)}
               sx={{
-                color: "white", // Texto branco quando um item for selecionado
-                "& .MuiSelect-icon": { color: "white" }, // Ícone da setinha branco
+                color: "white",
+                "& .MuiSelect-icon": { color: "white" },
               }}
             >
               {tratamentos.map((item) => (
@@ -170,15 +187,15 @@ export default function Contato2() {
           <TextField
             label="Mensagem"
             value={form.mensagem}
-            onChange={(e) => handleChange("mensagem", e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange("mensagem", e.target.value)}
             multiline
             rows={3}
             fullWidth
             error={erros.mensagem}
             helperText={erros.mensagem ? "Mensagem é obrigatória" : ""}
             sx={{
-              "& .MuiInputBase-input": { color: "white" }, // Para texto normal
-              "& .MuiInputBase-inputMultiline": { color: "white" }, // Para multiline
+              "& .MuiInputBase-input": { color: "white" },
+              "& .MuiInputBase-inputMultiline": { color: "white" },
               "& label": { color: "white" },
               "& label.Mui-focused": { color: "white" },
               "& .MuiOutlinedInput-root": {

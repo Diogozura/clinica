@@ -6,10 +6,16 @@ import { Button, Typography, Box, Slide, Paper } from '@mui/material';
 const STORAGE_KEY = 'cotidente.consentimentoPrivacidade.v1';
 const RETENCAO_DIAS = 365; // 12 meses aprox.
 
-function isConsentValid(consent) {
+interface ConsentData {
+  accepted: boolean;
+  acceptedAt: string;
+  version: number;
+}
+
+function isConsentValid(consent: string | null): boolean {
   if (!consent) return false;
   try {
-    const parsed = JSON.parse(consent);
+    const parsed: ConsentData = JSON.parse(consent);
     if (!parsed.acceptedAt) return false;
     const accepted = new Date(parsed.acceptedAt).getTime();
     const limite = accepted + RETENCAO_DIAS * 24 * 60 * 60 * 1000;
@@ -33,7 +39,7 @@ export default function ConsentimentoPrivacidade() {
     }
   }, []);
 
-  const emitirEventoConsentimento = (accepted) => {
+  const emitirEventoConsentimento = (accepted: boolean) => {
     try {
       window.dispatchEvent(new CustomEvent('consent-changed', { detail: { accepted } }));
     } catch {}
@@ -41,7 +47,7 @@ export default function ConsentimentoPrivacidade() {
 
   const aceitar = () => {
     try {
-      const payload = { accepted: true, acceptedAt: new Date().toISOString(), version: 1 };
+      const payload: ConsentData = { accepted: true, acceptedAt: new Date().toISOString(), version: 1 };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       emitirEventoConsentimento(true);
     } catch {
@@ -52,7 +58,7 @@ export default function ConsentimentoPrivacidade() {
 
   const recusar = () => {
     try {
-      const payload = { accepted: false, acceptedAt: new Date().toISOString(), version: 1 };
+      const payload: ConsentData = { accepted: false, acceptedAt: new Date().toISOString(), version: 1 };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
       emitirEventoConsentimento(false);
     } catch {}

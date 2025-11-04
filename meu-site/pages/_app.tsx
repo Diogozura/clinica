@@ -1,7 +1,7 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import Head from "next/head";
-import { CacheProvider } from "@emotion/react";
+import { AppProps } from "next/app";
+import { CacheProvider, EmotionCache } from "@emotion/react";
 import createEmotionCache from "../src/createEmotionCache";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { DefaultSeo } from "next-seo";
@@ -12,10 +12,17 @@ import theme from "../styles/theme";
 import EnderecoContato from "../src/componentes/enderecoContato";
 import ConsentimentoPrivacidade from "../src/componentes/consentimentoPrivacidade";
 import { hasAccepted } from "../src/utils/consent";
+import FloatingWhatsApp from "../src/componentes/marketing/FloatingWhatsApp";
+import marketing from "../src/mock/marketing.json";
+
 // Criando cache do Emotion
 const clientSideEmotionCache = createEmotionCache();
 
-export default function MyApp(props) {
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
+
+export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   React.useEffect(() => {
@@ -38,8 +45,9 @@ export default function MyApp(props) {
     } catch (e) {}
 
     // Ouve mudanças de consentimento
-    const handler = (e) => {
-      const accepted = e?.detail?.accepted === true;
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const accepted = customEvent?.detail?.accepted === true;
       if (accepted) {
         if (!window.__gtag_loaded) {
           const s = document.createElement("script");
@@ -94,6 +102,7 @@ export default function MyApp(props) {
         <CssBaseline />
         <Header />
         <ConsentimentoPrivacidade />
+        <FloatingWhatsApp hero={(marketing as any).hero} />
         <Component {...pageProps} />
         <EnderecoContato />
         <Footer />
@@ -101,9 +110,3 @@ export default function MyApp(props) {
     </CacheProvider>
   );
 }
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  emotionCache: PropTypes.object,
-  pageProps: PropTypes.object.isRequired,
-};

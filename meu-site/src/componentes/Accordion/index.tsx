@@ -1,15 +1,17 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import MuiAccordion from "@mui/material/Accordion";
+import MuiAccordion, { AccordionProps } from "@mui/material/Accordion";
 import MuiAccordionSummary, {
   accordionSummaryClasses,
+  AccordionSummaryProps,
 } from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
+import { Vantagem, MissaoVisaoValor } from "../../types";
 
 // Personalização do Accordion
-const Accordion = styled((props) => (
+const Accordion = styled((props: AccordionProps) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(() => ({
   border: "none",
@@ -22,7 +24,7 @@ const Accordion = styled((props) => (
 }));
 
 // Personalização do AccordionSummary
-const AccordionSummary = styled((props) => (
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
   <MuiAccordionSummary
     expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
     {...props}
@@ -47,10 +49,14 @@ const AccordionDetails = styled(MuiAccordionDetails)(() => ({
   borderRadius: 2,
 }));
 
-export default function CustomizedAccordions({ dados }) {
-  const [expanded, setExpanded] = React.useState(false);
+interface CustomizedAccordionsProps {
+  dados: Vantagem[] | MissaoVisaoValor[];
+}
 
-  const handleChange = (panel) => (_, newExpanded) => {
+export default function CustomizedAccordions({ dados }: CustomizedAccordionsProps) {
+  const [expanded, setExpanded] = React.useState<string | false>(false);
+
+  const handleChange = (panel: string) => (_: React.SyntheticEvent, newExpanded: boolean) => {
     setExpanded(newExpanded ? panel : false);
   };
 
@@ -67,7 +73,7 @@ export default function CustomizedAccordions({ dados }) {
             aria-controls={`panel${index}-content`}
             id={`panel${index}-header`}
           >
-            <Typography component="h3"  color="primary" textTransform="uppercase" fontWeight={600}>
+            <Typography component="h3" color="primary" textTransform="uppercase" fontWeight={600}>
               {item.titulo}
             </Typography>
           </AccordionSummary>

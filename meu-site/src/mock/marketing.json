@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "titulo": "Sorria hoje com atendimento humanizado",
+    "subtitulo": "Clínica especializada com tecnologia moderna e equipe acolhedora.",
+    "whatsappNumero": "5511975645902",
+    "whatsappMensagem": "Olá! Tenho uma dúvida sobre os tratamentos.",
+    "backgroundImagem": "/clinica/recepcao.webp",
+    "ctaTexto": "Tirar dúvidas no WhatsApp"
+  },
+  "socialProof": {
+    "titulo": "Aprovada por quem já passou por aqui",
+    "testemunhos": [
+      { "nome": "Mariana S.", "texto": "Atendimento excelente e resultado incrível!" },
+      { "nome": "Carlos P.", "texto": "Equipe muito atenciosa. Recomendo!" },
+      { "nome": "Juliana R.", "texto": "Ambiente confortável e profissionais competentes." }
+    ],
+    "avaliacaoMedia": 4.9,
+    "totalAvaliacoes": 320
+  },
+  "offer": {
+    "titulo": "Avaliação gratuita e condições especiais",
+    "bullets": [
+      "Avaliação sem custo e sem compromisso",
+      "Condições especiais neste mês",
+      "Atendimento de urgência com prioridade"
+    ],
+    "ctaTexto": "Agendar agora"
+  },
+  "guarantees": {
+    "titulo": "Compromissos com você",
+    "itens": [
+      "Atendimento humanizado",
+      "Avaliação sem custo/compromisso",
+      "Materiais certificados e seguros",
+      "Sigilo e proteção de dados"
+    ]
+  },
+  "faq": {
+    "titulo": "Perguntas Frequentes",
+    "itens": [
+      { "titulo": "A avaliação é realmente gratuita?", "descricao": "Sim, a avaliação é sem custo e sem compromisso." },
+      { "titulo": "Vocês atendem urgência?", "descricao": "Sim, damos prioridade para casos de urgência. Fale no WhatsApp." },
+      { "titulo": "Quais formas de pagamento?", "descricao": "Parcelamos nos principais cartões. Consulte condições." },
+      { "titulo": "Quanto tempo dura cada tratamento?", "descricao": "Depende do procedimento e do caso clínico. Na avaliação explicamos prazos estimados e etapas." },
+      { "titulo": "Vocês atendem convênios?", "descricao": "Atendemos de forma particular. Em alguns casos, fornecemos documentação para reembolso. Consulte-nos." },
+      { "titulo": "Tem estacionamento ou fácil acesso?", "descricao": "Sim, estamos em via de fácil acesso e com locais de parada próximos. Veja o mapa no rodapé." }
+    ]
+  },
+  "authority": {
+    "pacientesAtendidos": 2500,
+    "seloTexto": "Infinity Prime",
+    "seloImagem": "/logo-cotidente-graph.png"
+  }
+}

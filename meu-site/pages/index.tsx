@@ -3,19 +3,28 @@
 import { Box, Button, Container, Grid, Grid2, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
-const Carousel = dynamic(() => import('react-multi-carousel'), { ssr: false });
-// Simulação de importação do arquivo JSON
+
+// Importações dinâmicas
+const Carousel = dynamic(() => import('react-multi-carousel').then(mod => mod.default), { ssr: false }) as any;
+const Destaque = dynamic(() => import('../src/componentes/destaque'), { ssr: false });
+
+// Importações de componentes e dados
 import conteudoData from "../src/mock/conteudo.json";
 import ShareButtons from "../src/componentes/compartilhamento";
 import CustomizedAccordions from "../src/componentes/Accordion";
-const Destaque = dynamic(() => import('../src/componentes/destaque'), { ssr: false });
+import HeroCTA from "../src/componentes/marketing/HeroCTA";
+import SocialProof from "../src/componentes/marketing/SocialProof";
+import OfferBanner from "../src/componentes/marketing/OfferBanner";
+import Guarantees from "../src/componentes/marketing/Guarantees";
+import FAQ from "../src/componentes/marketing/FAQ";
+import AuthorityBadge from "../src/componentes/marketing/AuthorityBadge";
+import marketing from "../src/mock/marketing.json";
 import Vantagens from "../src/mock/vantagens.json";
 import MissaoVisaoValores from "../src/mock/missaoVisaoValores.json";
+import { Conteudo, Vantagem, MissaoVisaoValor, MarketingContent } from "../src/types";
 
 const images = [
   "/clinica/consultorio1.webp",
@@ -23,9 +32,15 @@ const images = [
   "/clinica/consultorio3.webp",
 ];
 
+const conteudo: Conteudo = conteudoData;
+const vantagens: Vantagem[] = Vantagens;
+const missaoVisaoValores: MissaoVisaoValor[] = MissaoVisaoValores;
+const mkt = marketing as unknown as MarketingContent;
+
 export default function Home() {
   const [offset, setOffset] = React.useState(0);
   const router = useRouter();
+  
   React.useEffect(() => {
     const handleScroll = () => setOffset(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -38,7 +53,8 @@ export default function Home() {
       import('react-multi-carousel/lib/styles.css');
     }
   }, []);
-    const handleScrollTo = async (id) => {
+
+  const handleScrollTo = async (id: string) => {
     const targetId = id.replace("#", "");
     // Se já estivermos na home, apenas faz o scroll
     if (router.pathname === "/") {
@@ -110,22 +126,9 @@ export default function Home() {
             px: 2,
           }}
         >
-          {/* Texto e Botão (Ocultos em md e xs) */}
+          {/* Texto e CTA (Ocultos em md e xs) */}
           <Grid item xs={6} sx={{ display: { xs: "none", md: "block" } }}>
-            <Typography variant="h6" sx={{ letterSpacing: 2 }}>
-              CLÍNICA ODONTOLÓGICA EM Cotia
-            </Typography>
-            <Typography variant="h3" sx={{ fontWeight: "bold", mt: 2 }}>
-              Cotidiente ODONTOLOGIA
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ mt: 3, fontSize: "1rem", fontWeight: "bold" }}
-              onClick={() => handleScrollTo("#conteudo")}
-            >
-              ➤ VAMOS LÁ
-            </Button>
+            <HeroCTA data={mkt.hero} />
           </Grid>
 
           {/* CARROSSEL (Sempre visível) */}
@@ -138,10 +141,10 @@ export default function Home() {
                 infinite
                 keyBoardControl
                 showDots
-                arrows={false} // Remove os botões laterais
+                arrows={false}
                 slidesToSlide={1}
                 containerClass="carousel-container"
-                dotListClass="custom-dot-list-style" // Aplica os estilos personalizados
+                dotListClass="custom-dot-list-style"
                 responsive={{
                   desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
                   mobile: { breakpoint: { max: 1024, min: 0 }, items: 1 },
@@ -162,10 +165,6 @@ export default function Home() {
       </Box>
       <Box
         sx={{ display: { xs: "block", md: "none", lg: "none" } }}
-        xs={12}
-        sm={12}
-        md={6}
-        lg={6}
       >
         <Carousel
           additionalTransfrom={0}
@@ -174,10 +173,10 @@ export default function Home() {
           infinite
           keyBoardControl
           showDots
-          arrows={false} // Remove os botões laterais
+          arrows={false}
           slidesToSlide={1}
           containerClass="carousel-container"
-          dotListClass="custom-dot-list-style" // Aplica os estilos personalizados
+          dotListClass="custom-dot-list-style"
           responsive={{
             desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
             mobile: { breakpoint: { max: 1024, min: 0 }, items: 1 },
@@ -189,8 +188,9 @@ export default function Home() {
         </Carousel>
       </Box>
       <Container id="conteudo" sx={{ p: { xs: 2, sm: 10 } }}>
+        <OfferBanner data={mkt.offer} hero={mkt.hero} />
         <Grid2 container spacing={8}>
-          <Grid2 item size={{ xs: 12, md: 6 }} p={3}>
+          <Grid2 size={{ xs: 12, md: 6 }} p={3}>
             <Image
               src={
                 "https://nepoodonto.com.br/wp-content/uploads/2021/12/nepo-odontologia-post2.jpeg"
@@ -201,23 +201,23 @@ export default function Home() {
               alt="Foto padrão"
             />
           </Grid2>
-          <Grid2 item size={{ xs: 12, md: 6 }}>
+          <Grid2 size={{ xs: 12, md: 6 }}>
             <Typography
               variant="h3"
               component={"h2"}
               sx={{ fontWeight: "bold", mt: 2, color: "#3ea1f1" }}
             >
-              {conteudoData.titulo}
+              {conteudo.titulo}
             </Typography>
             <Typography
               variant="h6"
               component={"h4"}
               sx={{ letterSpacing: 2, mt: 2 }}
             >
-              {conteudoData.subtitulo}
+              {conteudo.subtitulo}
             </Typography>
             <Typography variant="body1" component={"p"} sx={{ mt: 3 }}>
-              {conteudoData.descricao}
+              {conteudo.descricao}
             </Typography>
             <Typography sx={{ mt: 3 }}>
               Veja mais vantagens exclusivas da nossa clínica!
@@ -228,16 +228,21 @@ export default function Home() {
             />
           </Grid2>
           <Grid xs={12} lg={6}>
-            <CustomizedAccordions dados={Vantagens} />
+            <CustomizedAccordions dados={vantagens} />
           </Grid>
           <Grid xs={6}>{/* Espaço vazio */}</Grid>
         </Grid2>
       </Container>
+
+  {/* Provas sociais */}
+  <SocialProof data={mkt.socialProof} />
+
+  {/* Garantias */}
+  <Guarantees data={mkt.guarantees} />
       <Box
         sx={{ backgroundColor: "#000", padding: { xs: 1, md: 15 } }}
-       
       >
-        <Container  id="tratamento">
+        <Container id="tratamento">
           <Typography
             color={"primary"}
             textTransform={"uppercase"}
@@ -263,7 +268,7 @@ export default function Home() {
       <Box sx={{ padding: 3 }} id="equipe">
         <Container>
           <Grid2 container spacing={8}>
-            <Grid2 item size={{ xs: 12, md: 6 }}>
+            <Grid2 size={{ xs: 12, md: 6 }}>
               <Image
                 src={"/clinica/equipe.webp"}
                 alt="img default"
@@ -273,7 +278,7 @@ export default function Home() {
                 style={{ borderRadius: 10 }}
               />
             </Grid2>
-            <Grid2 item size={{ xs: 12, md: 6 }}>
+            <Grid2 size={{ xs: 12, md: 6 }}>
               <Typography
                 variant="h5"
                 component={"h2"}
@@ -282,11 +287,17 @@ export default function Home() {
               >
                 UM OLHAR PARA DENTRO
               </Typography>
-              <CustomizedAccordions dados={MissaoVisaoValores} />
+              <CustomizedAccordions dados={missaoVisaoValores} />
             </Grid2>
           </Grid2>
         </Container>
       </Box>
+
+      {/* FAQ */}
+      <FAQ data={mkt.faq} />
+
+      {/* Selo/Autoridade */}
+      <AuthorityBadge data={mkt.authority} />
     </>
   );
 }
