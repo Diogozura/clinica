@@ -80,13 +80,13 @@ export default function MyApp(props: MyAppProps) {
       </Head>
       <DefaultSeo
         title="Cotidente - Clínica Odontológica Especializada"
-        description="Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade."
+        description="Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity  de qualidade."
         openGraph={{
           type: "website",
           url: "https://www.cotidente.com.br",
           title: "Cotidente - Clínica Odontológica",
           description:
-            "Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity Prime de qualidade.",
+            "Clínica odontológica Cotidente especializada em tratamentos modernos e atendimento humanizado. Selo Infinity  de qualidade.",
           images: [
             {
               url: "https://www.cotidente.com.br/logo-cotidente-graph.png",

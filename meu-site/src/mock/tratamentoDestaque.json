@@ -12,6 +12,12 @@
       "descricao": "O implante dentário substitui a raiz de um ou mais dentes perdidos."
     },
     {
+      "titulo": "scanner intraoral",
+      "link": "/consultas",
+      "imagem": "/clinica/raio-x.png",
+      "descricao": "scanner intraoral com ele não precisa mais fazer moldagem, câmera intra oral, rx panorâmico ."
+    },
+    {
       "titulo": "LENTE DE CONTATO DENTAL",
       "link": "/sobre-nos",
       "imagem": "https://nepoodonto.com.br/wp-content/uploads/2020/03/lente-de-contato-dental-2.jpg",

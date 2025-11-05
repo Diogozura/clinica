@@ -353,22 +353,14 @@ export default function Home() {
       </Box>
       <Box sx={{ padding: 3 }} id="equipe">
         <Container>
-          <Grid2 container spacing={8}>
-            <Grid2 size={{ xs: 12, md: 6 }}>
-              <Image
-                src={"/clinica/equipe.webp"}
-                alt="img default"
-                width={500}
-                height={300}
-                layout="responsive"
-                style={{ borderRadius: 10 }}
-              />
-            </Grid2>
-            <Grid2 size={{ xs: 12, md: 6 }}>
+          <Grid2 container spacing={2}>
+           
+            <Grid2 size={{ xs: 12 }}>
               <Typography
                 variant="h5"
                 component={"h2"}
                 color="primary"
+                textAlign={'center'}
                 fontWeight={"bold"}
               >
                 UM OLHAR PARA DENTRO

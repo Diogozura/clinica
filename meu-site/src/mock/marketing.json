@@ -38,7 +38,7 @@
   "faq": {
     "titulo": "Perguntas Frequentes",
     "itens": [
-      { "titulo": "A avaliação é realmente gratuita?", "descricao": "Sim, a avaliação é sem custo e sem compromisso." },
+      { "titulo": "A avaliação sem custos", "descricao": "Oferecemos uma avaliação inicial como cortesia, para que você possa conhecer nossa abordagem de forma tranquila e personalizada." },
       { "titulo": "Vocês atendem urgência?", "descricao": "Sim, damos prioridade para casos de urgência. Fale no WhatsApp." },
       { "titulo": "Quais formas de pagamento?", "descricao": "Parcelamos nos principais cartões. Consulte condições." },
       { "titulo": "Quanto tempo dura cada tratamento?", "descricao": "Depende do procedimento e do caso clínico. Na avaliação explicamos prazos estimados e etapas." },
@@ -48,7 +48,7 @@
   },
   "authority": {
     "pacientesAtendidos": 2500,
-    "seloTexto": "Infinity Prime",
+    "seloTexto": "Infinity",
     "seloImagem": "/logo-cotidente-graph.png"
   }
 }
