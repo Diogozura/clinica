@@ -16,6 +16,7 @@ const Destaque = dynamic(() => import('../src/componentes/destaque'), { ssr: fal
 import conteudoData from "../src/mock/conteudo.json";
 import ShareButtons from "../src/componentes/compartilhamento";
 import CustomizedAccordions from "../src/componentes/Accordion";
+import MissaoVisaoValoresCards from "../src/componentes/marketing/MissaoVisaoValores";
 import HeroCTA from "../src/componentes/marketing/HeroCTA";
 import SocialProof from "../src/componentes/marketing/SocialProof";
 import OfferBanner from "../src/componentes/marketing/OfferBanner";
@@ -365,7 +366,7 @@ export default function Home() {
               >
                 UM OLHAR PARA DENTRO
               </Typography>
-              <CustomizedAccordions dados={missaoVisaoValores} />
+              <MissaoVisaoValoresCards dados={missaoVisaoValores} />
             </Grid2>
           </Grid2>
         </Container>
