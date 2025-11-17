@@ -30,11 +30,11 @@ import { Conteudo, Vantagem, MissaoVisaoValor, MarketingContent } from "../src/t
 
 const images = [
   "/clinica/espera.jpeg",
-  // "/clinica/consultorio1.webp",
-  // "/clinica/consultorio2.webp",
-  // "/clinica/consultorio3.webp",
+  "/clinica/1.png",
+  "/clinica/2.png",
   "/clinica/recepcao.jpeg",
   "/clinica/sala.jpeg",
+  "/clinica/3.png",
 ];
 
 const conteudo: Conteudo = conteudoData;
