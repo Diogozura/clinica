@@ -28,8 +28,9 @@ export default function EnderecoContato() {
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'center'}
+                sx={{ py: 2, fontSize: { xs: '0.95rem', md: '1.1rem' } }}
               >
-                <LocationOnIcon sx={{ m: 1 }} />
+                <LocationOnIcon sx={{ m: 1, fontSize: { xs: '1.5rem', md: '1.8rem' } }} />
                 <Box component={'span'} sx={{ display: { xs: 'none', sm: 'inline' } }}>
                   Av. Rotary, N° 100 - Jardim Nomura, Cotia - SP
                 </Box>
@@ -49,9 +50,10 @@ export default function EnderecoContato() {
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'center'}
+                sx={{ py: 2, fontSize: { xs: '0.95rem', md: '1.1rem' } }}
               >
                 {/* Ícone sempre visível, texto muda conforme breakpoint */}
-                <WhatsAppIcon sx={{ m: 1 }} />
+                <WhatsAppIcon sx={{ m: 1, fontSize: { xs: '1.5rem', md: '1.8rem' } }} />
                 <Box component={'span'} sx={{ display: { xs: 'inline', md: 'none' } }}>
                   Agendar
                 </Box>
