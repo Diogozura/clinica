@@ -339,9 +339,10 @@ export default function Home() {
             color={"primary"}
             textTransform={"uppercase"}
             fontWeight={600}
-            variant="h6"
+            variant="h4"
             component={"h2"}
-            m={"5px 0"}
+            textAlign={'center'}
+            m={"1px 0"}
             p={1}
           >
             TRATAMENTOS EM DESTAQUE

@@ -12,7 +12,7 @@ export default function Destaque() {
         {destaqueData.map((i, index) => (
           <Box key={index} maxWidth={260} m={1}>
             <Image width={248} height={165} layout="responsive" alt={i.titulo} src={i.imagem} />
-            <Typography color="primary">{i.titulo}</Typography>
+            <Typography color="primary" fontWeight={'bold'}>{i.titulo}</Typography>
             <Typography color="primary.contrastText" variant="body2" component={'p'}>{i.descricao}</Typography>
           </Box>
         ))}
