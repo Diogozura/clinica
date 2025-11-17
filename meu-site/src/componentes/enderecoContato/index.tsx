@@ -28,9 +28,9 @@ export default function EnderecoContato() {
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'center'}
-                sx={{ py: 2, fontSize: { xs: '0.95rem', md: '1.1rem' } }}
+                sx={{ py: 2.2, fontSize: { xs: '1.08rem', md: '1.18rem' }, fontWeight: 600 }}
               >
-                <LocationOnIcon sx={{ m: 1, fontSize: { xs: '1.5rem', md: '1.8rem' } }} />
+                <LocationOnIcon sx={{ m: 1, fontSize: { xs: '1.8rem', md: '1.9rem' } }} />
                 <Box component={'span'} sx={{ display: { xs: 'none', sm: 'inline' } }}>
                   Av. Rotary, N° 100 - Jardim Nomura, Cotia - SP
                 </Box>
@@ -50,10 +50,10 @@ export default function EnderecoContato() {
                 display={'flex'}
                 alignItems={'center'}
                 justifyContent={'center'}
-                sx={{ py: 2, fontSize: { xs: '0.95rem', md: '1.1rem' } }}
+                sx={{ py: 2.2, fontSize: { xs: '1.08rem', md: '1.18rem' }, fontWeight: 600 }}
               >
                 {/* Ícone sempre visível, texto muda conforme breakpoint */}
-                <WhatsAppIcon sx={{ m: 1, fontSize: { xs: '1.5rem', md: '1.8rem' } }} />
+                <WhatsAppIcon sx={{ m: 1, fontSize: { xs: '1.8rem', md: '1.9rem' } }} />
                 <Box component={'span'} sx={{ display: { xs: 'inline', md: 'none' } }}>
                   Agendar
                 </Box>
