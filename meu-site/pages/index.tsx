@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Container, Grid, Grid2, Typography, Modal, IconButton } from "@mui/material";
+import { Box, Button, Container, Grid, Grid2, Typography, Modal, IconButton, Skeleton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import Head from "next/head";
 import Image from "next/image";
@@ -46,6 +46,7 @@ export default function Home() {
   const [offset, setOffset] = React.useState(0);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState<string>("");
+  const [carouselLoaded, setCarouselLoaded] = React.useState(false);
   const router = useRouter();
 
   React.useEffect(() => {
@@ -58,6 +59,9 @@ export default function Home() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       import('react-multi-carousel/lib/styles.css');
+      // Simula carregamento do carousel
+      const timer = setTimeout(() => setCarouselLoaded(true), 500);
+      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -232,42 +236,52 @@ export default function Home() {
       <Box
         sx={{ display: { xs: "block", md: "none", lg: "none" } }}
       >
-        <Carousel
-          additionalTransfrom={0}
-          autoPlay
-          autoPlaySpeed={3000}
-          infinite
-          keyBoardControl
-          showDots
-          arrows={false}
-          slidesToSlide={1}
-          containerClass="carousel-container"
-          dotListClass="custom-dot-list-style"
-          responsive={{
-            desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
-            mobile: { breakpoint: { max: 1024, min: 0 }, items: 1 },
-          }}
-        >
-          {images.map((src, index) => (
-            <Box
-              key={index}
-              component="img"
-              src={src}
-              onClick={() => {
-                setSelectedImage(src);
-                setModalOpen(true);
-              }}
-              sx={{
-                width: "100%",
-                cursor: "pointer",
-                transition: "transform 0.2s",
-                "&:hover": {
-                  transform: "scale(1.02)"
-                }
-              }}
-            />
-          ))}
-        </Carousel>
+        {!carouselLoaded ? (
+          <Skeleton 
+            variant="rectangular" 
+            width="100%" 
+            height={300}
+            animation="wave"
+            sx={{ borderRadius: 0 }}
+          />
+        ) : (
+          <Carousel
+            additionalTransfrom={0}
+            autoPlay
+            autoPlaySpeed={3000}
+            infinite
+            keyBoardControl
+            showDots
+            arrows={false}
+            slidesToSlide={1}
+            containerClass="carousel-container"
+            dotListClass="custom-dot-list-style"
+            responsive={{
+              desktop: { breakpoint: { max: 3000, min: 1024 }, items: 1 },
+              mobile: { breakpoint: { max: 1024, min: 0 }, items: 1 },
+            }}
+          >
+            {images.map((src, index) => (
+              <Box
+                key={index}
+                component="img"
+                src={src}
+                onClick={() => {
+                  setSelectedImage(src);
+                  setModalOpen(true);
+                }}
+                sx={{
+                  width: "100%",
+                  cursor: "pointer",
+                  transition: "transform 0.2s",
+                  "&:hover": {
+                    transform: "scale(1.02)"
+                  }
+                }}
+              />
+            ))}
+          </Carousel>
+        )}
       </Box>
       <Container id="conteudo" sx={{ p: { xs: 2, sm: 10 } }}>
         <OfferBanner data={mkt.offer} hero={mkt.hero} />
