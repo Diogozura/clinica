@@ -1,11 +1,11 @@
 {
   "hero": {
-    "titulo": "Sorria hoje com atendimento humanizado",
-    "subtitulo": "Clínica especializada com tecnologia moderna e equipe acolhedora.",
+    "titulo": "Clínica Cotidente",
+    "subtitulo": "cuidado personalizado e resultados que transformam sorrisos.",
     "whatsappNumero": "5511975645902",
-    "whatsappMensagem": "Olá! Tenho uma dúvida sobre os tratamentos.",
+    "whatsappMensagem": "Olá! Gostaria de agendar uma consulta na Cotidente.",
     "backgroundImagem": "/clinica/recepcao.webp",
-    "ctaTexto": "Tirar dúvidas no WhatsApp"
+    "ctaTexto": "Agendar Consulta"
   },
   "socialProof": {
     "titulo": "Aprovada por quem já passou por aqui",
@@ -18,37 +18,37 @@
     "totalAvaliacoes": 320
   },
   "offer": {
-    "titulo": "Avaliação gratuita e condições especiais",
+    "titulo": "Odontologia Exclusiva e Personalizada",
     "bullets": [
-      "Avaliação sem custo e sem compromisso",
-      "Condições especiais neste mês",
-      "Atendimento de urgência com prioridade"
+      "Tratamentos sob medida para cada sorriso",
+      "Tecnologia avançada e materiais premium",
+      "Equipe especializada dedicada ao seu bem-estar"
     ],
-    "ctaTexto": "Agendar agora"
+    "ctaTexto": "Agendar Consulta"
   },
   "guarantees": {
-    "titulo": "Compromissos com você",
+    "titulo": "Nossos Compromissos com Você",
     "itens": [
-      "Atendimento humanizado",
-      "Avaliação sem custo/compromisso",
-      "Materiais certificados e seguros",
-      "Sigilo e proteção de dados"
+      "Atendimento humanizado e personalizado",
+      "Tecnologia de ponta e materiais de alta qualidade",
+      "Equipe especializada e constantemente atualizada",
+      "Ambiente acolhedor com total privacidade"
     ]
   },
   "faq": {
     "titulo": "Perguntas Frequentes",
     "itens": [
-      { "titulo": "A avaliação sem custos", "descricao": "Oferecemos uma avaliação inicial como cortesia, para que você possa conhecer nossa abordagem de forma tranquila e personalizada." },
-      { "titulo": "Vocês atendem urgência?", "descricao": "Sim, damos prioridade para casos de urgência. Fale no WhatsApp." },
-      { "titulo": "Quais formas de pagamento?", "descricao": "Parcelamos nos principais cartões. Consulte condições." },
-      { "titulo": "Quanto tempo dura cada tratamento?", "descricao": "Depende do procedimento e do caso clínico. Na avaliação explicamos prazos estimados e etapas." },
-      { "titulo": "Vocês atendem convênios?", "descricao": "Atendemos de forma particular. Em alguns casos, fornecemos documentação para reembolso. Consulte-nos." },
-      { "titulo": "Tem estacionamento ou fácil acesso?", "descricao": "Sim, estamos em via de fácil acesso e com locais de parada próximos. Veja o mapa no rodapé." }
+      { "titulo": "Como funciona a primeira consulta?", "descricao": "Na primeira consulta realizamos uma avaliação completa, apresentamos diagnóstico detalhado e elaboramos um plano de tratamento personalizado para suas necessidades." },
+      { "titulo": "Vocês atendem urgências odontológicas?", "descricao": "Sim, oferecemos atendimento prioritário para casos de urgência. Entre em contato pelo WhatsApp para agendamento rápido." },
+      { "titulo": "Quais são as formas de pagamento?", "descricao": "Aceitamos os principais cartões de crédito com parcelamento, cartões de débito e transferências. Consulte nossas condições especiais." },
+      { "titulo": "Quanto tempo dura cada tratamento?", "descricao": "O tempo varia conforme o procedimento e caso clínico. Durante a consulta, apresentamos o cronograma detalhado com todas as etapas do seu tratamento." },
+      { "titulo": "A clínica trabalha com convênios?", "descricao": "Nosso atendimento é particular, garantindo total dedicação e qualidade. Podemos fornecer documentação para solicitação de reembolso junto ao seu plano, quando aplicável." },
+      { "titulo": "Onde fica a clínica e como chegar?", "descricao": "Estamos na Av. Rotary, 100 - Jardim Nomura, Cotia-SP. Localização de fácil acesso com estacionamento próximo. Confira o mapa no rodapé do site." }
     ]
   },
   "authority": {
     "pacientesAtendidos": 2500,
-    "seloTexto": "Infinity",
-    "seloImagem": "/logo-cotidente-graph.png"
+    "seloTexto": "Infinity Clinic",
+    "seloImagem": "/clinica/infinity_clinic.png"
   }
 }

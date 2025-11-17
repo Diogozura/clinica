@@ -29,17 +29,12 @@ import MissaoVisaoValores from "../src/mock/missaoVisaoValores.json";
 import { Conteudo, Vantagem, MissaoVisaoValor, MarketingContent } from "../src/types";
 
 const images = [
-  "/clinica/entrada.jpeg",
+  "/clinica/espera.jpeg",
   // "/clinica/consultorio1.webp",
   // "/clinica/consultorio2.webp",
   // "/clinica/consultorio3.webp",
-  "/clinica/2.png",
-  "/clinica/4.png",
-  "/clinica/5.png",
-  "/clinica/6.png",
-  "/clinica/7.png",
-  "/clinica/8.png",
-  "/clinica/1.png",
+  "/clinica/recepcao.jpeg",
+  "/clinica/sala.jpeg",
 ];
 
 const conteudo: Conteudo = conteudoData;
@@ -52,7 +47,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [selectedImage, setSelectedImage] = React.useState<string>("");
   const router = useRouter();
-  
+
   React.useEffect(() => {
     const handleScroll = () => setOffset(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -171,8 +166,8 @@ export default function Home() {
                       setSelectedImage(src);
                       setModalOpen(true);
                     }}
-                    sx={{ 
-                      width: "100%", 
+                    sx={{
+                      width: "100%",
                       borderRadius: 2,
                       cursor: "pointer",
                       transition: "transform 0.2s",
@@ -254,22 +249,22 @@ export default function Home() {
           }}
         >
           {images.map((src, index) => (
-            <Box 
-              key={index} 
-              component="img" 
-              src={src} 
+            <Box
+              key={index}
+              component="img"
+              src={src}
               onClick={() => {
                 setSelectedImage(src);
                 setModalOpen(true);
               }}
-              sx={{ 
+              sx={{
                 width: "100%",
                 cursor: "pointer",
                 transition: "transform 0.2s",
                 "&:hover": {
                   transform: "scale(1.02)"
                 }
-              }} 
+              }}
             />
           ))}
         </Carousel>
@@ -314,18 +309,14 @@ export default function Home() {
               title={"visite o site Cotidente"}
             />
           </Grid2>
-          <Grid xs={12} lg={6}>
-            <CustomizedAccordions dados={vantagens} />
-          </Grid>
-          <Grid xs={6}>{/* Espaço vazio */}</Grid>
         </Grid2>
       </Container>
 
-  {/* Provas sociais */}
-  <SocialProof data={mkt.socialProof} />
+      {/* Provas sociais */}
+      <SocialProof data={mkt.socialProof} />
 
-  {/* Garantias */}
-  <Guarantees data={mkt.guarantees} />
+      {/* Garantias */}
+      <Guarantees data={mkt.guarantees} />
       <Box
         sx={{ backgroundColor: "#000", padding: { xs: 1, md: 15 } }}
       >
@@ -355,7 +346,7 @@ export default function Home() {
       <Box sx={{ padding: 3 }} id="equipe">
         <Container>
           <Grid2 container spacing={2}>
-           
+
             <Grid2 size={{ xs: 12 }}>
               <Typography
                 variant="h5"

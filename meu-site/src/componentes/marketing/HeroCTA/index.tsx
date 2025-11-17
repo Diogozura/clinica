@@ -12,11 +12,12 @@ export default function HeroCTA({ data }: Props) {
 
   return (
     <Box>
-      <Typography variant="h6" sx={{ letterSpacing: 2 }}>
-        {subtitulo}
-      </Typography>
+
       <Typography variant="h3" sx={{ fontWeight: 'bold', mt: 2 }}>
         {titulo}
+      </Typography>
+      <Typography variant="h6" sx={{ letterSpacing: 2 }}>
+        {subtitulo}
       </Typography>
       <Button
         component="a"
