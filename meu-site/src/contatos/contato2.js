@@ -199,6 +199,16 @@ export default function Contato2() {
           >
             Enviar para WhatsApp
           </Button>
+              <Typography
+            variant="body2"
+            sx={{
+              color: "white",
+              textAlign: "center",
+              mt: 1, // Margem superior (margin-top)
+            }}
+          >
+            Ou envie um e-mail para: <strong>contato@cotidente.com.br</strong>
+          </Typography>
         </Box>
       </Container>
     </>
