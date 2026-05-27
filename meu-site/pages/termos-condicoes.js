@@ -38,7 +38,7 @@ export default function termosCondicoes() {
             3. Isenção de responsabilidade
           </Typography>
           <Typography paragraph>
-            Os materiais no site são fornecidos "como estão". A clínica não
+            Os materiais no site são fornecidos &quot;como estão&quot;. A clínica não
             oferece garantias expressas ou implícitas e, por este meio, isenta
             todas as outras garantias.
           </Typography>
