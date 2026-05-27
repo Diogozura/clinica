@@ -29,7 +29,7 @@ const images = [
   "/clinica/consultorio2.webp",
   "/clinica/consultorio3.webp",
 ];
-
+ 
 export default function Home() {
   const [offset, setOffset] = React.useState(0);
   const router = useRouter();
