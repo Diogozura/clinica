@@ -41,6 +41,9 @@ export default function Footer() {
             <Typography color="primary.contrastText">
              CNPJ 18.234.382/0001-83
             </Typography>
+            <Typography color="primary.contrastText">
+              Razão social COTIDENTE ODONTOLOGIA LTDA
+            </Typography>    
             <Box
               sx={{
                 position: "relative",
