@@ -16,7 +16,7 @@
     "@mui/icons-material": "^6.4.3",
     "@mui/material": "^6.4.3",
     "@mui/styles": "^6.4.3",
-    "next": "15.1.6",
+    "next": "15.1.11",
     "next-seo": "^6.6.0",
     "nookies": "^2.5.2",
     "react": "^19.0.0",
